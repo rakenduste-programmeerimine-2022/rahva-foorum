@@ -4,4 +4,4 @@
 
 ### Projekti funktsionaalsused
 
-## Projekti autorid
+## Projekti autoridd
