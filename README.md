@@ -12,5 +12,5 @@ Lisaks on sisselogitud inimestel võimalik postitada maakonnas toimuvaid üritus
 Sisselogimata inimesed saavad lehekülge sirvida ja lugeda teiste arutelusid, kuid ei saa neid kommenteerida.
 
 ## Projekti autorid
-Kristjan Tamm
+Kristjan Tamm,
 Ervin Puust
