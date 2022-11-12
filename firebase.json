@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "rahva-foorum",
     "public": "public",
     "ignore": [
       "firebase.json",
