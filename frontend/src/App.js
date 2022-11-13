@@ -2,7 +2,9 @@ import Navbar from "./components/Navbar.js"
 import Mail from "./pages/Mail.js"
 import Home from "./pages/Home"
 import Profile from "./pages/Profile"
-import { Route, Routes } from "react-router-dom"
+import Sidenav from './components/SideNav.js';
+import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 
 function App() {
@@ -16,8 +18,24 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
+      <div className="App">
+      <Sidenav/>
+      <main>
+      <Routes>
+        <Route  path="/" element={<Home />}/>
+        <Route path="/mail" element={<Mail />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+      </main>
+     
+    </div>
+      
     </>
+    
+    
   )
 }
+
+
 
 export default App

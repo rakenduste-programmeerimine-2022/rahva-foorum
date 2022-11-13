@@ -1,4 +1,7 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import "../styles.css"
+
+
 
 export default function Navbar() {
   return (
@@ -7,8 +10,8 @@ export default function Navbar() {
         Rahva-foorum
       </Link>
       <ul>
-        <CustomLink to="/pricing">Postkast</CustomLink>
-        <CustomLink to="/about">Minu profiil</CustomLink>
+        <CustomLink to="/mail">Postkast</CustomLink>
+        <CustomLink to="/profile">Minu profiil</CustomLink>
       </ul>
     </nav>
   )
@@ -26,4 +29,6 @@ function CustomLink({ to, children, ...props }) {
     </li>
   )
 }
+
+
 
