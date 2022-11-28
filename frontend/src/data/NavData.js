@@ -13,8 +13,8 @@ export const NavData = [
     {
         id: 1,
         icon: <TravelExploreIcon/>,
-        text: "Explore",
-        link: "explore"
+        text: "Uus postitus",
+        link: "newpost"
     },
     {
         id: 2,
