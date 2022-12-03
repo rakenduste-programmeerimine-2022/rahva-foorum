@@ -29,8 +29,8 @@ export default function NewPost() {
     <form onSubmit={handleSubmit} className='newPost' name='newPost'>
       <h2>Uus arutelu</h2>
         <input 
-          type='tekst' 
-          name='pealkiri' 
+          type='text' 
+          name='title' 
           onChange={(e) => setTitle(e.target.value.toUpperCase())} 
           value={title}
           placeholder='Sisesta pealkiri'/>
