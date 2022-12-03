@@ -1,3 +1,3 @@
-export default function Mail() {
-    return <h1>Postkast</h1>
+export default function Profile() {
+	return <h1>mail</h1>
   }

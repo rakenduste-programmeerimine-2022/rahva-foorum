@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Sidenav() {
   return (
+   
     <div className = {styles.sidenav}>
         
         {NavData.map(item =>{
@@ -14,5 +15,6 @@ export default function Sidenav() {
         </NavLink>
         })}
     </div>
+ 
   )
 }
