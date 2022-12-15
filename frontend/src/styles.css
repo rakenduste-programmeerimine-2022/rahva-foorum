@@ -11,6 +11,7 @@
     text-align: center;
   }
   
+  
   .nav {
     height: 80px;
     background-color: #333;
@@ -54,5 +55,18 @@
     background-color: #777;
   }
 
+#post{
+  text-align: left;
+}
 
-  
+.heading-container {
+  line-height: 0;
+}
+
+.heading-container .heading{
+  display: inline-block;
+}
+.heading-container .location{
+  float: right;
+}
+

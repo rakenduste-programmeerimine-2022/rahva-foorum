@@ -4,8 +4,10 @@ import cx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+
+import withStyles from '@material-ui/styles/withStyles';
 import defaultChatMsgStyles from '@mui-treasury/styles/chatMsg/default';
+
 const ChatMsg = withStyles(defaultChatMsgStyles, { name: 'ChatMsg' })(props => {
   const {
     classes,
@@ -67,6 +69,7 @@ const ChatMsg = withStyles(defaultChatMsgStyles, { name: 'ChatMsg' })(props => {
     </Grid>
   );
 });
+
 ChatMsg.propTypes = {
   avatar: PropTypes.string,
   messages: PropTypes.arrayOf(PropTypes.string),
@@ -85,4 +88,5 @@ ChatMsg.defaultProps = {
   AvatarProps: {},
   getTypographyProps: () => ({}),
 };
+
 export default ChatMsg;

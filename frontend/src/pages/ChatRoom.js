@@ -1,5 +1,9 @@
 import React from 'react';
 import ChatMsg from '../components/ChatMsg';
+/*
+import ChatMsg from '@mui-treasury/components/chatMsg/ChatMsg'; 
+sample taken from https://mui-treasury.com/components/chat-msg/ 
+*/
 
 const ChatRoom = () => (
   <div>
