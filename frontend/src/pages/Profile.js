@@ -4,6 +4,7 @@ export default function Profile() {
     <div>
         <Typography variant="h1" color="initial" class="heading">Minu profiil</Typography>
         <Container sx={{ border: 1}}>
+        <Typography variant="h1" color="initial" class="heading">Minu postitused</Typography>
           <Container sx={{ border: 1 }} id="posts">
               <Stack spacing={2} m={2}>
                 <Container sx={{ border: 1, display: 'flex', justifyContent: 'space-between'}}  id="post">
