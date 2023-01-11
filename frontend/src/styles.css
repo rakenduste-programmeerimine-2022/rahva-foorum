@@ -8,7 +8,7 @@
   
   .container {
     margin: 5rem;
-    text-align: center;
+
   }
   
   
@@ -20,7 +20,7 @@
     justify-content: space-between;
     align-items: stretch;
     gap: 2rem;
-    padding: 0 1rem;
+    padding: 1rem;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
   
@@ -66,6 +66,7 @@
 .heading-container .heading{
   display: inline-block;
 }
+
 .heading-container .location{
   float: right;
 }

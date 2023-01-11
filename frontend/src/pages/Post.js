@@ -4,7 +4,7 @@ export default function Post() {
 
     return(
         <div>
-            <Container sx={{ border: 1 }}  id="post">
+            <Container sx={{ border: 3 }}  id="post">
                 <Typography variant="h3" color="initial" class="date">Kuupäev-kellaaeg</Typography>
                 <div class="heading-container">
                     <Typography variant="h1" color="initial" class="heading">Pealkiri</Typography>
@@ -17,8 +17,8 @@ export default function Post() {
             </Container>
 
             <Container sx={{ border: 1 }} id="post">
-                <Stack spacing={2}>
-                    <Container sx={{ border: 1 }}>
+                <Stack spacing={2} m={2}>
+                    <Container sx={{ border: 2 }}>
                         <Typography variant="h3" color="initial" class="date">Kuupäev-kellaaeg</Typography>
                         <Typography variant="h3" color="initial" class="user">Kasutaja2</Typography>
                         <Typography variant="body1" color="initial" class="content">
@@ -26,7 +26,7 @@ export default function Post() {
                         </Typography>
                     </Container>
 
-                    <Container sx={{ border: 1 }}>
+                    <Container sx={{ border: 2 }}>
                         <Typography variant="h3" color="initial" class="date">Kuupäev-kellaaeg</Typography>
                         <Typography variant="h3" color="initial" class="user">Kasutaja3</Typography>
                         <Typography variant="body1" color="initial" class="content">
@@ -34,20 +34,18 @@ export default function Post() {
                         </Typography>
                     </Container>
 
-                    <Container sx={{ border: 1 }}>
+                    <Container >
                         <TextField
-                        placeholder="MultiLine with rows: 2 and rowsMax: 4"
+                        placeholder="Sisesta kommentaar" /* MultiLine with rows: 2 and rowsMax: 4*/
                         multiline
                         rows={2}
                         maxRows={4}
                         fullWidth
                         />
-                        <Button sx={{ backgroundColor: 'black', '&:hover': { backgroundColor:'green' }}} variant="contained">Lisa kommentaar</Button>
+                        <Button sx={{ float: "right", backgroundColor: 'black', '&:hover': { backgroundColor:'green' }}} variant="contained">Lisa kommentaar</Button>
                     </Container>
                 </Stack>
             </Container>
-
         </div>
-        
     )
 }
