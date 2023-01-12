@@ -7,18 +7,22 @@ import {
 } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../styles.css";
+import { useLogout } from "../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
 
-export default function Navbar() {
+//Logging out
+const Navbar = () => {
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
   const [loginVisibility, setLoginVisibility] = useState(false);
 
   const toggleLogin = () => {
     setLoginVisibility(!loginVisibility);
   };
-  //Logging out
-  const logout = () => {
-    localStorage.clear();
-    console.log("User sign-out successful!");
+  const handleClick = () => {
+    logout();
     Navigate("/");
+    console.log("User sign-out successful!");
   };
 
   return (
@@ -28,59 +32,27 @@ export default function Navbar() {
       </Link>
       <ul>
         <nav className="navbar">
-          {localStorage.getItem("token") ? (
+          {user && (
             <>
+              <CustomLink to="/foorum">Foorum</CustomLink>
+              <CustomLink to="/mail">Postkast</CustomLink>
+              <CustomLink to="/profile">Minu profiil</CustomLink>
               <CustomLink onClick={logout} to="/">
                 Logout
               </CustomLink>
-              <CustomLink to="/mail">Postkast</CustomLink>
-              <CustomLink to="/profile">Minu profiil</CustomLink>
             </>
-          ) : (
+          )}
+          {!user && (
             <>
-              <CustomLink to="/register">Register</CustomLink>
               <CustomLink to="/login">Login</CustomLink>
-              {loginVisibility ? (
-                <CustomLink onClick={toggleLogin}>Logi sisse</CustomLink>
-              ) : (
-                <li>
-                  <CustomLink onClick={toggleLogin}>Logi sisse</CustomLink>
-                  <div className="login-form">
-                    <form>
-                      <div className="input-container">
-                        <label>Kasutajanimi</label>
-                        <input type="text" name="uname" required />
-                      </div>
-                      <div className="input-container">
-                        <label>Parool</label>
-                        <input type="password" name="pass" required />
-                      </div>
-                      <div className="button-container">
-                        <button type="submit" onClick={toggleLogin}>
-                          Sisene
-                        </button>
-                      </div>
-                      <br />
-                      <div className="bottom-container">
-                        <CustomLink to="/reset" onClick={toggleLogin}>
-                          Unustasin salasõna
-                        </CustomLink>
-                        <br />
-                        <CustomLink to="/register" onClick={toggleLogin}>
-                          Ei ole kasutajat? Registreeru nüüd.
-                        </CustomLink>
-                      </div>
-                    </form>
-                  </div>
-                </li>
-              )}
+              <CustomLink to="/register">Register</CustomLink>
             </>
           )}
         </nav>
       </ul>
     </nav>
   );
-}
+};
 
 function CustomLink({ to, children, ...props }) {
   const resolvedPath = useResolvedPath(to);
@@ -94,3 +66,4 @@ function CustomLink({ to, children, ...props }) {
     </li>
   );
 }
+export default Navbar;

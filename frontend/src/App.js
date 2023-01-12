@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Foorum from "./pages/Foorum";
 import Sidenav from "./components/SideNav.js";
 
 import "./App.css";
@@ -17,6 +18,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/foorum" element={<Foorum />} />
           <Route path="/mail" element={<Mail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/register" element={<Register />} />

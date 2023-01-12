@@ -1,66 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import { useSignup } from "../hooks/useSignup";
 import { Snackbar, Alert, FormHelperText, Typography } from "@mui/material";
+import { useLogout } from "../hooks/useLogout";
 
 export default function Register() {
-  const snackbar = {
-    text: "",
-    severity: "",
-  };
   // React States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signup, error, isLoading } = useSignup();
   const [passwordError] = useState("");
   const [errorMessages] = useState({});
   const [isSubmitted] = useState(false);
   const [redirect, setRedirect] = useState(false);
-  const [snackbarInfo, setSnackbarInfo] = useState(snackbar);
-  const [snackOpen, setSnackOpen] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [helperText, setHelperText] = useState("");
+  const { logout } = useLogout();
 
-  const handleSubmit = async (value) => {
-    setErrorMsg("");
-    setHelperText("");
-    value.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setRedirect(true);
 
-    //form to user template
-    const user = {
-      name: name,
-      email: email,
-      password: password,
-    };
-
-    const handleSnackClose = () => {
-      setSnackOpen(false);
-    };
-
-    //axios
-    try {
-      axios
-        .post("http://localhost:8080/user/signup", user)
-        .then((res) => {
-          console.log(res.data);
-          if (res) {
-            console.log("User registered successfully!");
-
-            setRedirect(true);
-          } else {
-            console.log(res.data);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setErrorMsg("An user with this email already exists" + error);
-        });
-    } catch (error) {
-      console.error(error);
-    }
+    await signup(name, email, password);
+    logout();
   };
-
-  //redirects to login page
   if (redirect) {
     return <Navigate to="/login" />;
   }
