@@ -2,6 +2,10 @@ const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "3d" });
+};
+
 exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -44,7 +48,7 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   //fields required in the login form
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     //find if email exists
@@ -59,13 +63,12 @@ exports.login = async (req, res) => {
 
     const userTemplate = {
       id: user.id,
+      name,
       email,
       message: "Auth Succesful",
     };
 
-    const token = jwt.sign(userTemplate, process.env.JWT_SECRET, {
-      expiresIn: 86400,
-    });
+    const token = createToken(user._id);
 
     if (!token) throw Error("Token not found");
 

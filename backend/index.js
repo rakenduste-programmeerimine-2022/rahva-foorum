@@ -12,6 +12,7 @@ app.get("/", jwtAuth, (req, res) => {
 });
 
 const userRoutes = require("./routes/user.routes");
+const forumRoutes = require("./routes/forum.routes");
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -25,6 +26,7 @@ mongoose
 
 //route mid
 app.use("/user", userRoutes);
+app.use("/forum", forumRoutes);
 
 app.get("*", (req, res) => {
   res.send("404");

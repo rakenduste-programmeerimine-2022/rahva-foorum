@@ -6,7 +6,7 @@ const jwtAuth = (req, res, next) => {
 
     // Authorization: Bearer token
     const accessToken = req.headers.authorization.split(" ")[1];
-
+    //
     const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
     req.user = decoded;
 

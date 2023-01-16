@@ -35,6 +35,7 @@ const Navbar = () => {
           {user && (
             <>
               <CustomLink to="/foorum">Foorum</CustomLink>
+              <CustomLink to="/newpost">NewPost</CustomLink>
               <CustomLink to="/mail">Postkast</CustomLink>
               <CustomLink to="/profile">Minu profiil</CustomLink>
               <CustomLink onClick={logout} to="/">

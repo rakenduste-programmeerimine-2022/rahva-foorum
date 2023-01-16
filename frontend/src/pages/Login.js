@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     setRedirect(true);
 
-    await login(email, password);
+    await login(name, email, password);
   };
   if (redirect) {
     return <Navigate to="/" />;
@@ -38,6 +38,18 @@ const Login = () => {
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
+        <div className="input-container">
+          <label>Kasutajanimi</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Name"
+            name="uname"
+            required
+          />
+          {renderErrorMessage("uname")}
+        </div>
         <div className="input-container">
           <label>Email</label>
           <input
