@@ -19,13 +19,13 @@ export const NavData = [
     {
         id: 2,
         icon: <BarChartIcon/>,
-        text: "Statistics",
-        link: "statistics"
+        text: "Vestlused",
+        link: "chatroom"
     },
     {
         id: 3,
         icon: <SettingsIcon/>,
-        text: "Settings",
-        link: "settings"
+        text: "Posts",
+        link: "post"
     }
 ]

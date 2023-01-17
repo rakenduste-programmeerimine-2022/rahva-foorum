@@ -4,6 +4,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Stack, Button } from "@mui/material";
 // components
 import PostDetails from "../components/PostDetails";
 //import WorkoutForm from "../components/WorkoutForm";
@@ -37,21 +38,23 @@ const Profile = () => {
   }, [dispatch, user]);
 
   return (
-    <div className="home">
-      <div>
-        <button onClick={handleSubmit} type="submit">
-          Loo uus postitus
-        </button>
-      </div>
-      <div>
-        <Link to="/addpost">Loo uus postitus</Link>;
-      </div>
-
-      <div className="workouts">
+    <>
+      <Button onClick={handleSubmit}
+        sx={{
+          width: 200,
+          height: 50,
+          backgroundColor: "black",
+          "&:hover": { backgroundColor: "green" },
+        }}
+        variant="contained"
+      >
+        Loo uus postitus
+      </Button>
+      <Stack spacing={2} m={2}>
         {posts &&
           posts.map((post) => <PostDetails key={post._id} post={post} />)}
-      </div>
-    </div>
+      </Stack>
+    </>
   );
 };
 

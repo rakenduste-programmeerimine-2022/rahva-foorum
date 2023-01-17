@@ -1,7 +1,7 @@
 import { Container, Stack, Typography, TextField, Button } from "@mui/material";
 export default function Post() {
   return (
-    <div>
+    <>
       <Container sx={{ border: 3 }} id="post">
         <Typography variant="h3" color="initial" class="date">
           Kuupäev-kellaaeg
@@ -96,6 +96,6 @@ export default function Post() {
           </Container>
         </Stack>
       </Container>
-    </div>
+    </>
   );
 }
