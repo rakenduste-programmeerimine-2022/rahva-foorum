@@ -1,51 +1,86 @@
-const User = require('../models/user.model')
-const { validationResult } = require("express-validator")
-const jwt = require('jsonwebtoken');
+const User = require("../models/user.model");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "3d" });
+};
 
 exports.signup = async (req, res) => {
-  const errors = validationResult(req)
-  if(!errors.isEmpty()){
-      return res.status(400).json({ errors: errors.array() })
+  const { name, email, password } = req.body;
+
+  try {
+    //check if email exists
+    const user = await User.findOne({
+      email,
+    });
+    if (user) throw Error("User with that e-mail already exists");
+
+    //salting
+    const salt = await bcrypt.genSalt(10);
+    if (!salt) throw Error("Something happened 1");
+
+    //salt password from req.body
+    const hash = await bcrypt.hash(password, salt);
+    if (!hash) throw Error("Something happened 2");
+
+    //usertemplate
+    const newUser = new User({
+      name,
+      email,
+      password: hash,
+    });
+
+    //save user
+    const savedUser = await newUser.save();
+    if (!savedUser) throw Error("Error saving user");
+
+    //user saved successfully
+    res.status(200).json({
+      message: "User created successfully",
+    });
+  } catch (e) {
+    res.status(400).json({
+      error: e.message,
+    });
   }
-  User.signup(req.body)
-      .then((data) => res.send(data))
-      .catch((err) => res.send(err))
-}
+};
 
 exports.login = async (req, res) => {
- 
+  //fields required in the login form
+  const { name, email, password } = req.body;
 
-  const userExist = await User.findOne({ name: req.body.name,email: req.body.email });
+  try {
+    //find if email exists
+    const user = await User.findOne({
+      email,
+    });
+    //users mail is not existing
+    if (!user) throw Error("User with this e-mail does not exist");
+    //wrong password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) throw Error("Password is not correct");
 
+    const userTemplate = {
+      id: user.id,
+      name,
+      email,
+      message: "Auth Succesful",
+    };
 
-  if (!userExist) return res.status(400).json({
-      message: 'Nimi või email on vale!!'
-  })
+    const token = createToken(user._id);
 
+    if (!token) throw Error("Token not found");
 
-  const matchPassword = await User.comparePassword(req.body.password, userExist.password)
+    res.status(200).json({
+      token,
+      ...userTemplate,
+    });
+  } catch (e) {
+    res.status(400).json({
+      error: e.message,
+    });
+  }
+};
 
-
-  if (!matchPassword) return res.status(401).json({
-      token: null,
-      message: 'Pass on vale!'
-  })
-  console.log(userExist)
-
-
-  const token = jwt.sign({ id: userExist._id }, 'secretKey', {
-      expiresIn: 86400
-  })
-
-
-  return res.json({
-      _id: userExist._id,
-      name: userExist._id,
-      message: 'Auth Succesful',
-      token: token
-  })
-
-}
-
-
-exports.protected = async (req, res) => {}
+exports.protected = async (req, res) => {};

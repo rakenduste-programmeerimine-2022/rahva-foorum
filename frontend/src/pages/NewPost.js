@@ -1,45 +1,101 @@
-import {useState, useEffect} from 'react'
-
-import "../NewPost.css"
-
-import TextEditor from '../components/TextEditor';
-
-export default function NewPost() {
-
-  const [title, setTitle] = useState('')
-  const description = useState('')
-
-  const handleSubmit = () => {
-
-    /* const file = e.target[0]?.files[0] */
-
-    /*
-    if (!file){
-      alert("Vali pilt!");
-      return;
-    }
-    */
-
-    console.log(title)
-    console.log(description)
-    
-  }
-  
+import { Container, Stack, Typography, TextField, Button } from "@mui/material";
+export default function Post() {
   return (
-    <form onSubmit={handleSubmit} className='newPost' name='newPost'>
-      <h2>Uus arutelu</h2>
-        <input 
-          type='text' 
-          name='title' 
-          onChange={(e) => setTitle(e.target.value.toUpperCase())} 
-          value={title}
-          placeholder='Sisesta pealkiri'/>
+    <div>
+      <Container sx={{ border: 3 }} id="post">
+        <Typography variant="h3" color="initial" class="date">
+          Kuupäev-kellaaeg
+        </Typography>
+        <div class="heading-container">
+          <Typography variant="h1" color="initial" class="heading">
+            Pealkiri
+          </Typography>
+          <Typography variant="h1" color="initial" class="location">
+            Võrumaa
+          </Typography>
+        </div>
+        <Typography variant="h3" color="initial" class="user">
+          Kasutaja1
+        </Typography>
+        <Typography variant="body1" color="initial" class="content">
+          Cras laoreet vitae arcu at facilisis. Nulla efficitur odio nec velit
+          rhoncus, ac imperdiet nisi convallis. Aliquam rutrum non orci vel
+          blandit. Orci varius natoque penatibus et magnis dis parturient
+          montes, nascetur ridiculus mus. Phasellus efficitur tempor urna, et
+          consectetur urna convallis vel. Praesent rhoncus arcu a tincidunt
+          convallis. Ut commodo magna eget fringilla sagittis. Quisque auctor
+          ante mattis felis imperdiet dictum. Sed tristique egestas nibh finibus
+          tincidunt. Nullam tortor diam, viverra sed elementum at, gravida
+          suscipit nisl. Nam dictum ante ac augue semper, sit amet cursus metus
+          tempor.
+        </Typography>
+      </Container>
 
-          <TextEditor />
-          
-          <p>Lisa postituse failid: </p>
-          <input type="file" id="myFile" name="filename"></input>
-        <button type='submit'>Postita</button>
-      </form>
-  )
+      <Container sx={{ border: 1 }} id="post">
+        <Stack spacing={2} m={2}>
+          <Container sx={{ border: 2 }}>
+            <Typography variant="h3" color="initial" class="date">
+              Kuupäev-kellaaeg
+            </Typography>
+            <Typography variant="h3" color="initial" class="user">
+              Kasutaja2
+            </Typography>
+            <Typography variant="body1" color="initial" class="content">
+              Cras laoreet vitae arcu at facilisis. Nulla efficitur odio nec
+              velit rhoncus, ac imperdiet nisi convallis. Aliquam rutrum non
+              orci vel blandit. Orci varius natoque penatibus et magnis dis
+              parturient montes, nascetur ridiculus mus. Phasellus efficitur
+              tempor urna, et consectetur urna convallis vel. Praesent rhoncus
+              arcu a tincidunt convallis. Ut commodo magna eget fringilla
+              sagittis. Quisque auctor ante mattis felis imperdiet dictum. Sed
+              tristique egestas nibh finibus tincidunt. Nullam tortor diam,
+              viverra sed elementum at, gravida suscipit nisl. Nam dictum ante
+              ac augue semper, sit amet cursus metus tempor.
+            </Typography>
+          </Container>
+
+          <Container sx={{ border: 2 }}>
+            <Typography variant="h3" color="initial" class="date">
+              Kuupäev-kellaaeg
+            </Typography>
+            <Typography variant="h3" color="initial" class="user">
+              Kasutaja3
+            </Typography>
+            <Typography variant="body1" color="initial" class="content">
+              Cras laoreet vitae arcu at facilisis. Nulla efficitur odio nec
+              velit rhoncus, ac imperdiet nisi convallis. Aliquam rutrum non
+              orci vel blandit. Orci varius natoque penatibus et magnis dis
+              parturient montes, nascetur ridiculus mus. Phasellus efficitur
+              tempor urna, et consectetur urna convallis vel. Praesent rhoncus
+              arcu a tincidunt convallis. Ut commodo magna eget fringilla
+              sagittis. Quisque auctor ante mattis felis imperdiet dictum. Sed
+              tristique egestas nibh finibus tincidunt. Nullam tortor diam,
+              viverra sed elementum at, gravida suscipit nisl. Nam dictum ante
+              ac augue semper, sit amet cursus metus tempor.
+            </Typography>
+          </Container>
+
+          <Container>
+            <TextField
+              placeholder="Sisesta kommentaar" /* MultiLine with rows: 2 and rowsMax: 4*/
+              multiline
+              rows={2}
+              maxRows={4}
+              fullWidth
+            />
+            <Button
+              sx={{
+                float: "right",
+                backgroundColor: "black",
+                "&:hover": { backgroundColor: "green" },
+              }}
+              variant="contained"
+            >
+              Lisa kommentaar
+            </Button>
+          </Container>
+        </Stack>
+      </Container>
+    </div>
+  );
 }
