@@ -7,6 +7,8 @@ const router = express.Router();
 // require auth for all workout routes
 router.use(reqAuth);
 
+router.get("/allposts", forumController.getPosts);
+
 router.post("/post", forumController.createPost);
 
 module.exports = router;

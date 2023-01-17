@@ -1,92 +1,58 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Navigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+// components
+import PostDetails from "../components/PostDetails";
+//import WorkoutForm from "../components/WorkoutForm";
 
-const PostForm = () => {
-  const { dispatch } = useForumContext();
+const Profile = () => {
+  const { posts, dispatch } = useForumContext();
   const { user } = useAuthContext();
-
-  const [topic, setTopic] = useState("");
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
-  const [error, setError] = useState(null);
-  const [emptyFields, setEmptyFields] = useState([]);
+  const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!user) {
-      setError("You must be logged in");
-      return;
-    }
-
-    const post = { topic, title, text };
-
-    const response = await fetch("http://localhost:8080/forum/post", {
-      method: "POST",
-      body: JSON.stringify(post),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
-    const json = await response.json();
-
-    if (!response.ok) {
-      setError(json.error);
-      setEmptyFields(json.emptyFields);
-    }
-    if (response.ok) {
-      setTopic("");
-      setTitle("");
-      setText("");
-      setError(null);
-      setEmptyFields([]);
-      dispatch({ type: "CREATE_POST", payload: json });
-    }
+    setRedirect(true);
+    console.log("loh");
+    <Link to="/addpost"></Link>;
   };
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("http://localhost:8080/forum/allposts", {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "SET_POSTS", payload: json });
+      }
+    };
+
+    if (user) {
+      fetchPosts();
+    }
+  }, [dispatch, user]);
 
   return (
-    <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <h3>Add a Post</h3>
-        <div className="input-container">
-          <label>Topic:</label>
-          <input
-            value={topic}
-            type="text"
-            onChange={(e) => setTopic(e.target.value)}
-            className={emptyFields.includes("topic") ? "error" : ""}
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label>Title:</label>
-          <input
-            value={title}
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            className={emptyFields.includes("title") ? "error" : ""}
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label>Text:</label>
-          <input
-            value={text}
-            type="text"
-            onChange={(e) => setText(e.target.value)}
-            className={emptyFields.includes("text") ? "error" : ""}
-            required
-          />
-        </div>
-        <div>
-          <button>Post add</button>
-          {error && <div className="error">{error}</div>}
-        </div>
-      </form>
+    <div className="home">
+      <div>
+        <button onClick={handleSubmit} type="submit">
+          Loo uus postitus
+        </button>
+      </div>
+      <div>
+        <Link to="/addpost">Loo uus postitus</Link>;
+      </div>
+
+      <div className="workouts">
+        {posts &&
+          posts.map((post) => <PostDetails key={post._id} post={post} />)}
+      </div>
     </div>
   );
 };
 
-export default PostForm;
+export default Profile;

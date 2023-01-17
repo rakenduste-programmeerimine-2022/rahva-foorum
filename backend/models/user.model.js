@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
-
+const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 //creating user schema for database
 const userSchema = new Schema(
   {
@@ -7,6 +8,7 @@ const userSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     status: { type: String, enum: ["pending", "active"], default: "pending" },
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
   },
   { timestamps: true }
 );
