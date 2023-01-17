@@ -9,6 +9,8 @@ router.use(reqAuth);
 
 router.get("/allposts", forumController.getPosts);
 
+router.get("/userposts", forumController.getUserPosts);
+
 router.post("/post", forumController.createPost);
 
 module.exports = router;

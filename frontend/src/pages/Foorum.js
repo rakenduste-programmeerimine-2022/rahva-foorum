@@ -8,17 +8,10 @@ import { Link } from "react-router-dom";
 import PostDetails from "../components/PostDetails";
 //import WorkoutForm from "../components/WorkoutForm";
 
-const Profile = () => {
+const Foorum = () => {
   const { posts, dispatch } = useForumContext();
   const { user } = useAuthContext();
-  const [redirect, setRedirect] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setRedirect(true);
-    console.log("loh");
-    <Link to="/addpost"></Link>;
-  };
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("http://localhost:8080/forum/allposts", {
@@ -39,12 +32,9 @@ const Profile = () => {
   return (
     <div className="home">
       <div>
-        <button onClick={handleSubmit} type="submit">
-          Loo uus postitus
-        </button>
-      </div>
-      <div>
-        <Link to="/addpost">Loo uus postitus</Link>;
+        <div>
+          <Link to="/addpost">Loo uus postitus </Link>
+        </div>
       </div>
 
       <div className="workouts">
@@ -55,4 +45,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Foorum;

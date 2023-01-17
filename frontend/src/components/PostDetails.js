@@ -3,9 +3,9 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 // date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-
 const PostDetails = ({ post }) => {
   const { user } = useAuthContext();
+  console.log(post);
 
   return (
     <div className="workout-details">
@@ -20,7 +20,7 @@ const PostDetails = ({ post }) => {
       </p>
       <p>
         <strong>Postitaja: </strong>
-        {post.postedBy}
+        {post.user_id}
       </p>
       <p>
         {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}

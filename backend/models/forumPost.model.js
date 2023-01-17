@@ -7,7 +7,7 @@ const forumPostSchema = new Schema(
     topic: { type: String, required: true, ref: "Topic" },
     title: { type: String, required: true, maxLenght: 5 },
     text: { type: String },
-    postedBy: { type: String, ref: "User" },
+    user: { type: ObjectId, ref: "User" },
     user_id: { type: String, required: true },
     status: { type: String, enum: ["pending", "active"], default: "pending" },
   },
