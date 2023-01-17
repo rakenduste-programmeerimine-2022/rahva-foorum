@@ -1,5 +1,6 @@
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Container, Stack, Typography, TextField, Button } from "@mui/material";
 
 // date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
@@ -8,23 +9,26 @@ const PostDetails = ({ post }) => {
   console.log(post);
 
   return (
-    <div className="workout-details">
-      <h4>{post.topic}</h4>
-      <p>
-        <strong>Maakond: </strong>
-        {post.title}
-      </p>
-      <p>
-        <strong>Teema: </strong>
-        {post.text}
-      </p>
-      <p>
-        <strong>Postitaja: </strong>
-        {post.user_id}
-      </p>
-      <p>
-        {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
-      </p>
+    <div>
+      <Container sx={{ border: 3 }} id="post">
+        <Typography variant="h3" color="initial" class="date">
+          {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
+        </Typography>
+        <div class="heading-container">
+          <Typography variant="h1" color="initial" class="heading">
+            Pealkiri: {post.topic}
+          </Typography>
+          <Typography variant="h1" color="initial" class="location">
+            Maakond: {post.title}
+          </Typography>
+        </div>
+        <Typography variant="h3" color="initial" class="user">
+          Postitaja: {post.postedBy}
+        </Typography>
+        <Typography variant="body1" color="initial" class="content">
+          Teema: {post.text}
+        </Typography>
+      </Container>
     </div>
   );
 };

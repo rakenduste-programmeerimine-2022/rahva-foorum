@@ -38,6 +38,15 @@ const Login = () => {
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
+      {/* 
+      https://codesandbox.io/s/5pjgby?file=/demo.tsx:356-493
+      <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          defaultValue="Hello World"
+        />
+      */}
         <div className="input-container">
           <label>Kasutajanimi</label>
           <input

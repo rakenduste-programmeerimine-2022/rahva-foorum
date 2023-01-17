@@ -28,16 +28,18 @@ const Profile = () => {
   }, [dispatch, user]);
 
   return (
-    <div>
-      <Typography variant="h1" color="initial" class="heading">
-        Profiil
-      </Typography>
-      <Typography variant="h1" color="initial" class="heading">
-        Username:{user.name}
-      </Typography>
-      <Typography variant="h1" color="initial" class="heading">
-        Email:{user.email}
-      </Typography>
+    <>
+      <Container>
+        <Typography variant="h1" color="initial" class="heading">
+          Profiil
+        </Typography>
+        <Typography variant="h2" color="initial" class="heading">
+          Kasutajanimi: {user.name}
+        </Typography>
+        <Typography variant="h2" color="initial" class="heading">
+          Email: {user.email}
+        </Typography>
+      </Container>
       <Container sx={{ border: 1 }}>
         <Typography variant="h1" color="initial" class="heading">
           Minu postitused
@@ -82,17 +84,20 @@ const Profile = () => {
         <Typography variant="h1" color="initial" class="heading">
           Minu andmed
         </Typography>
-        <Button
-          sx={{
-            backgroundColor: "black",
-            "&:hover": { backgroundColor: "green" },
-          }}
-          variant="contained"
-        >
-          Muuda andmeid
-        </Button>
+        <Stack m={2}>
+          <Button
+            sx={{
+              width: 200,
+              backgroundColor: "black",
+              "&:hover": { backgroundColor: "green" },
+            }}
+            variant="contained"
+          >
+            Muuda andmeid
+          </Button>
+        </Stack>
       </Container>
-    </div>
+    </>
   );
 };
 export default Profile;

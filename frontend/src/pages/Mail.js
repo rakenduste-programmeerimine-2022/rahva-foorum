@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Stack } from "@mui/material";
 
 // components
 import PostDetails from "../components/PostDetails";
@@ -28,12 +29,13 @@ const Profile = () => {
   }, [dispatch, user]);
 
   return (
-    <div className="home">
-      <div className="workouts">
-        {posts &&
-          posts.map((post) => <PostDetails key={post._id} post={post} />)}
-      </div>
-    </div>
+    <>
+    <Stack spacing={2} m={2}>
+      {posts &&
+        posts.map((post) => <PostDetails key={post._id} post={post} />)}
+    </Stack>
+      
+    </>
   );
 };
 
