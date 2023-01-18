@@ -13,4 +13,5 @@ router.get("/userposts", forumController.getUserPosts);
 
 router.post("/post", forumController.createPost);
 
+router.get("/posts/:id", forumController.getSinglePost);
 module.exports = router;

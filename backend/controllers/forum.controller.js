@@ -4,6 +4,18 @@ const mongoose = require("mongoose");
 const { populate } = require("../models/forumPost.model");
 const asyncHandler = require("express-async-handler");
 
+exports.getSinglePost = asyncHandler(async (req, res) => {
+  const { _id, topic, title, text } = await Post.findById(req.params.id);
+  const user_id = req.user._id;
+  res.status(200).json({
+    id: _id,
+    topic,
+    title,
+    text,
+    user_id,
+  });
+});
+
 exports.getUserPosts = async (req, res) => {
   const user_id = req.user._id;
 
@@ -44,12 +56,12 @@ exports.createPost = async (req, res) => {
   // add doc to db
   try {
     //const postedBy = User?.name;
-
+    const user_id = req.user._id;
     const post = await Post.create({
       topic,
       title,
       text,
-      user: req.user.id,
+      user_id,
     });
     res.status(200).json(post);
   } catch (error) {

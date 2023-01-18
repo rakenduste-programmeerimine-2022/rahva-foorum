@@ -8,6 +8,10 @@ export const forumReducer = (state, action) => {
       return {
         posts: action.payload,
       };
+    case "SET_POST_BY_ID":
+      return {
+        posts: action.payload,
+      };
     case "CREATE_POST":
       return {
         posts: action.payload,

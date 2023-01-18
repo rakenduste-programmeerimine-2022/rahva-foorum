@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Stack, Button } from "@mui/material";
@@ -12,7 +12,11 @@ import PostDetails from "../components/PostDetails";
 const Foorum = () => {
   const { posts, dispatch } = useForumContext();
   const { user } = useAuthContext();
-
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+    let path = "/addpost";
+    navigate(path);
+  };
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("http://localhost:8080/forum/allposts", {
@@ -32,7 +36,8 @@ const Foorum = () => {
 
   return (
     <>
-      <Button onClick={handleSubmit}
+      <Button
+        onClick={handleSubmit}
         sx={{
           width: 200,
           height: 50,

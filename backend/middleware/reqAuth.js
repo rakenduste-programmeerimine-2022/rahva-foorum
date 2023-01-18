@@ -12,10 +12,9 @@ const reqAuth = async (req, res, next) => {
   const token = authorization.split(" ")[1];
   //
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { _id } = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Get user from the token
-    req.user = await User.findById(decoded.id).select("-password");
+    req.user = await User.findOne({ _id }).select("_id");
     next();
   } catch (error) {
     console.log(error);
