@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Stack, TextField, Button } from "@mui/material";
 
 const PostForm = () => {
   const { dispatch } = useForumContext();
@@ -49,6 +50,53 @@ const PostForm = () => {
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
+      { 
+      <>
+      <Stack spacing={2} m={2}>
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="topic"
+          label="Kategooria"
+          handleChange={(e) => setTopic(e.target.value)}
+          error={emptyFields.includes("topic") ? "error" : ""}
+        />
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="title"
+          label="Pealkiri"
+          handleChange={(e) => setTitle(e.target.value)}
+          error={emptyFields.includes("title") ? "error" : ""}
+        />
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="text"
+          label="Tekst"
+          handleChange={(e) => setText(e.target.value)}
+          error={emptyFields.includes("text") ? "error" : ""}
+        />
+        <Button
+          sx={{
+            width: 300,
+            backgroundColor: "black",
+            "&:hover": { backgroundColor: "green" },
+          }}
+          variant="contained"
+          error={error && <div className="error">{error}</div>}
+          >
+            Lisa postitus
+        </Button>
+      </Stack>
+      </>
+      }
         <h3>Add a Post</h3>
         <div className="input-container">
           <label>Topic:</label>

@@ -3,6 +3,7 @@ import { useLogin } from "../hooks/useLogin";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { Stack, TextField, Button } from "@mui/material";
 
 const Login = () => {
   // React States
@@ -38,15 +39,54 @@ const Login = () => {
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
-      {/* 
-      https://codesandbox.io/s/5pjgby?file=/demo.tsx:356-493
-      <TextField
+      { 
+      <>
+      <Stack spacing={2} m={2}>
+        <TextField
+          sx={{
+            width: 300
+          }}
           required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Hello World"
+          id="username"
+          label="Kasutajanimi"
+          handleChange={(e) => setName(e.target.value)}
+          error={renderErrorMessage("uname")}
         />
-      */}
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="email"
+          label="Email"
+          handleChange={(e) => setEmail(e.target.value)}
+          error={renderErrorMessage("email")}
+        />
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="password"
+          label="Parool"
+          type="password"
+          autoComplete="current-password"
+          handleChange={(e) => setPassword(e.target.value)}
+          error={passwordError.length < 5, renderErrorMessage("pass")}
+        />
+        <Button
+          sx={{
+            width: 300,
+            backgroundColor: "black",
+            "&:hover": { backgroundColor: "green" },
+          }}
+          variant="contained"
+          >
+            Logi sisse
+        </Button>
+      </Stack>
+      </>
+      }
         <div className="input-container">
           <label>Kasutajanimi</label>
           <input

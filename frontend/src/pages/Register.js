@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSignup } from "../hooks/useSignup";
 import { Snackbar, Alert, FormHelperText, Typography } from "@mui/material";
 import { useLogout } from "../hooks/useLogout";
+import { Stack, TextField, Button } from "@mui/material";
 
 export default function Register() {
   // React States
@@ -38,6 +39,54 @@ export default function Register() {
   const renderForm = (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
+      { 
+      <>
+      <Stack spacing={2} m={2}>
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="username"
+          label="Kasutajanimi"
+          handleChange={(e) => setName(e.target.value)}
+          error={renderErrorMessage("uname")}
+        />
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="email"
+          label="Email"
+          handleChange={(e) => setEmail(e.target.value)}
+          error={renderErrorMessage("email")}
+        />
+        <TextField
+          sx={{
+            width: 300
+          }}
+          required
+          id="password"
+          label="Parool"
+          type="password"
+          autoComplete="current-password"
+          handleChange={(e) => setPassword(e.target.value)}
+          error={passwordError.length < 5, renderErrorMessage("pass")}
+        />
+        <Button
+          sx={{
+            width: 300,
+            backgroundColor: "black",
+            "&:hover": { backgroundColor: "green" },
+          }}
+          variant="contained"
+          >
+            Registreeru
+        </Button>
+      </Stack>
+      </>
+      }
         <div className="input-container">
           <label>Kasutajanimi</label>
           <input
