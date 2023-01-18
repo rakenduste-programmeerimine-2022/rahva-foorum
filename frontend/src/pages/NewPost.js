@@ -6,7 +6,9 @@ import PostDetails from "../components/PostDetails";
 import { useAuthContext } from "../hooks/useAuthContext";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import moment from "moment";
-
+import Comments from "../components/Comments";
+import ShowComments from "../components/ShowComments";
+//const Comment =(comment)
 const Post = (post) => {
   const { posts, dispatch } = useForumContext();
   const { id } = useParams();
@@ -27,11 +29,10 @@ const Post = (post) => {
   }, [dispatch, id]);
   return (
     //posts created at tuleb lisada!!
+    //{moment(posts.createdAt).format("MMMM Do YYYY")}
     <>
       <Container sx={{ border: 3 }} id="post">
-        <Typography variant="h3" color="initial" class="date">
-          {moment(posts.createdAt).format("MMMM Do YYYY")}
-        </Typography>
+        <Typography variant="h3" color="initial" class="date"></Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
             Pealkiri:{posts.topic}
@@ -47,6 +48,19 @@ const Post = (post) => {
           {posts.text}
         </Typography>
       </Container>
+      <Button
+        sx={{
+          width: 200,
+          height: 50,
+          backgroundColor: "black",
+          "&:hover": { backgroundColor: "green" },
+        }}
+        variant="contained"
+      >
+        Lisa kommentaar
+      </Button>
+      <Comments />
+      <ShowComments />
     </>
   );
 };
