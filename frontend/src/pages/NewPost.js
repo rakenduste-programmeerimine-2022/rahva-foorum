@@ -1,19 +1,20 @@
-import { Container, Stack, Typography, TextField, Button } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useForumContext } from "../hooks/useForumContext";
-import PostDetails from "../components/PostDetails";
 import { useAuthContext } from "../hooks/useAuthContext";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import moment from "moment";
 import Comments from "../components/Comments";
 import ShowComments from "../components/ShowComments";
+import { PropTypes } from "prop-types";
 //const Comment =(comment)
 const Post = (post) => {
   const { posts, dispatch } = useForumContext();
   const { id } = useParams();
   const { user } = useAuthContext();
-
+  let postTopic = posts.topic;
+  let postTitle = posts.title;
+  let postText = posts.text;
   useEffect(() => {
     const fetchPostById = async () => {
       const response = await fetch(`http://localhost:8080/forum/posts/${id}`, {
@@ -28,7 +29,6 @@ const Post = (post) => {
     fetchPostById();
   }, [dispatch, id]);
   return (
-    //posts created at tuleb lisada!!
     //{moment(posts.createdAt).format("MMMM Do YYYY")}
     <>
       <Container sx={{ border: 3 }} id="post">
@@ -37,17 +37,17 @@ const Post = (post) => {
         </Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
-            Pealkiri:{posts.topic}
+            Pealkiri:{postTopic}
           </Typography>
           <Typography variant="h1" color="initial" class="location">
-            {posts.title}
+            {postTitle}
           </Typography>
         </div>
         <Typography variant="h3" color="initial" class="user">
           Kasutaja: {posts.user_id}
         </Typography>
         <Typography variant="body1" color="initial" class="content">
-          {posts.text}
+          {postText}
         </Typography>
       </Container>
 
@@ -55,5 +55,10 @@ const Post = (post) => {
       <ShowComments />
     </>
   );
+};
+Post.propTypes = {
+  postTopic: PropTypes.string,
+  postTitle: PropTypes.string,
+  postText: PropTypes.string,
 };
 export default Post;

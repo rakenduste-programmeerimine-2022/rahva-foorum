@@ -1,9 +1,10 @@
 import { ListItem, ListItemText } from "@mui/material";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Container, Stack, Typography, TextField, Button } from "@mui/material";
-
+import { PropTypes } from "prop-types";
 const CommentDetails = ({ comment }) => {
   const { user } = useAuthContext();
+  let Comment = comment.comment;
 
   return (
     <div>
@@ -13,12 +14,14 @@ const CommentDetails = ({ comment }) => {
             Kasutaja: {comment.user.name || user.name}
           </Typography>
           <Typography variant="h1" color="initial" class="location">
-            Kommentaar: {comment.comment}
+            Kommentaar: {Comment}
           </Typography>
         </div>
       </Container>
     </div>
   );
 };
-
+CommentDetails.propTypes = {
+  Comment: PropTypes.string,
+};
 export default CommentDetails;

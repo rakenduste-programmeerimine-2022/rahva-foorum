@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { Snackbar, Alert } from "@mui/material";

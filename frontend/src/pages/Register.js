@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import axios from "axios";
+
 import { useSignup } from "../hooks/useSignup";
-import { Snackbar, Alert, FormHelperText, Typography } from "@mui/material";
+//import { Snackbar, Alert, FormHelperText, Typography } from "@mui/material";
 import { useLogout } from "../hooks/useLogout";
 
 export default function Register() {

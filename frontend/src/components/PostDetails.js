@@ -1,15 +1,12 @@
-import { useForumContext } from "../hooks/useForumContext";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { Container, Stack, Typography, TextField, Button } from "@mui/material";
-// date fns
+import { Container, Typography, Button } from "@mui/material";
 import moment from "moment";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { PropTypes } from "prop-types";
 
 const PostDetails = ({ post }) => {
-  const { user } = useAuthContext();
-  //console.log(post);
+  let postTopic = post.topic;
+  let postTitle = post.title;
+  let postText = post.text;
   const navigate = useNavigate();
   const detailsPage = () => {
     let path = "/newpost/" + post._id;
@@ -24,17 +21,17 @@ const PostDetails = ({ post }) => {
         </Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
-            Pealkiri: {post.topic}
+            Teema:{postTopic}
           </Typography>
           <Typography variant="h1" color="initial" class="location">
-            Maakond: {post.title}
+            Maakond: {postTitle}
           </Typography>
         </div>
         <Typography variant="h3" color="initial" class="user">
           Postitaja: {post.user_id}
         </Typography>
         <Typography variant="body1" color="initial" class="content">
-          Teema: {post.text}
+          Teema: {postText}
         </Typography>
         <Typography variant="body1" color="initial" class="content">
           <Button onClick={detailsPage}>Vaata postitust</Button>
@@ -43,5 +40,9 @@ const PostDetails = ({ post }) => {
     </div>
   );
 };
-
+PostDetails.propTypes = {
+  postTopic: PropTypes.string,
+  postTitle: PropTypes.string,
+  postText: PropTypes.string,
+};
 export default PostDetails;
