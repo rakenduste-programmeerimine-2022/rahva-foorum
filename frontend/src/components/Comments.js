@@ -56,22 +56,26 @@ const Comments = () => {
   //<CommentList></CommentList>
   return (
     <>
-      <Typography>Comments</Typography>
-
       <form onSubmit={handleSubmit}>
         <FormGroup>
           <FormControl required>
-            <InputLabel>Comment</InputLabel>
             <Input
-              id="newsComment"
-              className="commentField"
               type="text"
               onChange={(e) => setCommentBody(e.target.value)}
               value={commentBody}
             />
           </FormControl>
-          <Button color="success" variant="contained" type="submit">
-            Post comment
+          <Button
+            type="submit"
+            sx={{
+              width: 200,
+              height: 50,
+              backgroundColor: "black",
+              "&:hover": { backgroundColor: "green" },
+            }}
+            variant="contained"
+          >
+            Lisa kommentaar
           </Button>
         </FormGroup>
         {error && <Box>{error}</Box>}

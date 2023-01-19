@@ -32,7 +32,9 @@ const Post = (post) => {
     //{moment(posts.createdAt).format("MMMM Do YYYY")}
     <>
       <Container sx={{ border: 3 }} id="post">
-        <Typography variant="h3" color="initial" class="date"></Typography>
+        <Typography variant="h3" color="initial" class="date">
+          {moment(post.createdAt).format("MMMM Do YYYY")}
+        </Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
             Pealkiri:{posts.topic}
@@ -48,17 +50,7 @@ const Post = (post) => {
           {posts.text}
         </Typography>
       </Container>
-      <Button
-        sx={{
-          width: 200,
-          height: 50,
-          backgroundColor: "black",
-          "&:hover": { backgroundColor: "green" },
-        }}
-        variant="contained"
-      >
-        Lisa kommentaar
-      </Button>
+
       <Comments />
       <ShowComments />
     </>
