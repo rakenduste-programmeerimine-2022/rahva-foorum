@@ -63,7 +63,7 @@ exports.login = async (req, res) => {
 
     const userTemplate = {
       id: user.id,
-      name,
+      name: user.name,
       email,
       message: "Auth Succesful",
     };

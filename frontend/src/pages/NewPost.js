@@ -1,101 +1,59 @@
 import { Container, Stack, Typography, TextField, Button } from "@mui/material";
-export default function Post() {
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useForumContext } from "../hooks/useForumContext";
+import PostDetails from "../components/PostDetails";
+import { useAuthContext } from "../hooks/useAuthContext";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import moment from "moment";
+import Comments from "../components/Comments";
+import ShowComments from "../components/ShowComments";
+//const Comment =(comment)
+const Post = (post) => {
+  const { posts, dispatch } = useForumContext();
+  const { id } = useParams();
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const fetchPostById = async () => {
+      const response = await fetch(`http://localhost:8080/forum/posts/${id}`, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "SET_POST_BY_ID", payload: json });
+      }
+    };
+    fetchPostById();
+  }, [dispatch, id]);
   return (
+    //posts created at tuleb lisada!!
+    //{moment(posts.createdAt).format("MMMM Do YYYY")}
     <>
       <Container sx={{ border: 3 }} id="post">
         <Typography variant="h3" color="initial" class="date">
-          Kuupäev-kellaaeg
+          {moment(post.createdAt).format("MMMM Do YYYY")}
         </Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
-            Pealkiri
+            Pealkiri:{posts.topic}
           </Typography>
           <Typography variant="h1" color="initial" class="location">
-            Võrumaa
+            {posts.title}
           </Typography>
         </div>
         <Typography variant="h3" color="initial" class="user">
-          Kasutaja1
+          Kasutaja: {posts.user_id}
         </Typography>
         <Typography variant="body1" color="initial" class="content">
-          Cras laoreet vitae arcu at facilisis. Nulla efficitur odio nec velit
-          rhoncus, ac imperdiet nisi convallis. Aliquam rutrum non orci vel
-          blandit. Orci varius natoque penatibus et magnis dis parturient
-          montes, nascetur ridiculus mus. Phasellus efficitur tempor urna, et
-          consectetur urna convallis vel. Praesent rhoncus arcu a tincidunt
-          convallis. Ut commodo magna eget fringilla sagittis. Quisque auctor
-          ante mattis felis imperdiet dictum. Sed tristique egestas nibh finibus
-          tincidunt. Nullam tortor diam, viverra sed elementum at, gravida
-          suscipit nisl. Nam dictum ante ac augue semper, sit amet cursus metus
-          tempor.
+          {posts.text}
         </Typography>
       </Container>
 
-      <Container sx={{ border: 1 }} id="post">
-        <Stack spacing={2} m={2}>
-          <Container sx={{ border: 2 }}>
-            <Typography variant="h3" color="initial" class="date">
-              Kuupäev-kellaaeg
-            </Typography>
-            <Typography variant="h3" color="initial" class="user">
-              Kasutaja2
-            </Typography>
-            <Typography variant="body1" color="initial" class="content">
-              Cras laoreet vitae arcu at facilisis. Nulla efficitur odio nec
-              velit rhoncus, ac imperdiet nisi convallis. Aliquam rutrum non
-              orci vel blandit. Orci varius natoque penatibus et magnis dis
-              parturient montes, nascetur ridiculus mus. Phasellus efficitur
-              tempor urna, et consectetur urna convallis vel. Praesent rhoncus
-              arcu a tincidunt convallis. Ut commodo magna eget fringilla
-              sagittis. Quisque auctor ante mattis felis imperdiet dictum. Sed
-              tristique egestas nibh finibus tincidunt. Nullam tortor diam,
-              viverra sed elementum at, gravida suscipit nisl. Nam dictum ante
-              ac augue semper, sit amet cursus metus tempor.
-            </Typography>
-          </Container>
-
-          <Container sx={{ border: 2 }}>
-            <Typography variant="h3" color="initial" class="date">
-              Kuupäev-kellaaeg
-            </Typography>
-            <Typography variant="h3" color="initial" class="user">
-              Kasutaja3
-            </Typography>
-            <Typography variant="body1" color="initial" class="content">
-              Cras laoreet vitae arcu at facilisis. Nulla efficitur odio nec
-              velit rhoncus, ac imperdiet nisi convallis. Aliquam rutrum non
-              orci vel blandit. Orci varius natoque penatibus et magnis dis
-              parturient montes, nascetur ridiculus mus. Phasellus efficitur
-              tempor urna, et consectetur urna convallis vel. Praesent rhoncus
-              arcu a tincidunt convallis. Ut commodo magna eget fringilla
-              sagittis. Quisque auctor ante mattis felis imperdiet dictum. Sed
-              tristique egestas nibh finibus tincidunt. Nullam tortor diam,
-              viverra sed elementum at, gravida suscipit nisl. Nam dictum ante
-              ac augue semper, sit amet cursus metus tempor.
-            </Typography>
-          </Container>
-
-          <Container>
-            <TextField
-              placeholder="Sisesta kommentaar" /* MultiLine with rows: 2 and rowsMax: 4*/
-              multiline
-              rows={2}
-              maxRows={4}
-              fullWidth
-            />
-            <Button
-              sx={{
-                float: "right",
-                backgroundColor: "black",
-                "&:hover": { backgroundColor: "green" },
-              }}
-              variant="contained"
-            >
-              Lisa kommentaar
-            </Button>
-          </Container>
-        </Stack>
-      </Container>
+      <Comments />
+      <ShowComments />
     </>
   );
-}
+};
+export default Post;

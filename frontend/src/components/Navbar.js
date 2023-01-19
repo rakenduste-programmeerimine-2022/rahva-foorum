@@ -25,6 +25,10 @@ const Navbar = () => {
     console.log("User sign-out successful!");
   };
 
+  const handleClicks = () => {
+    window.location.reload(false);
+  };
+
   return (
     <nav className="nav">
       <Link to="/" className="site-title">

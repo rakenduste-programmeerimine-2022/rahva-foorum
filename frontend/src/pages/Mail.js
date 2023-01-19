@@ -3,9 +3,7 @@ import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Stack } from "@mui/material";
 
-// components
 import PostDetails from "../components/PostDetails";
-//import WorkoutForm from "../components/WorkoutForm";
 
 const Profile = () => {
   const { posts, dispatch } = useForumContext();
@@ -14,7 +12,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const response = await fetch("http://localhost:8080/forum/allposts", {
-        headers: { Authorization: `Bearer ${user.token}` },
+        // headers: { Authorization: `Bearer ${user.token}` },
       });
       const json = await response.json();
 
@@ -30,11 +28,10 @@ const Profile = () => {
 
   return (
     <>
-    <Stack spacing={2} m={2}>
-      {posts &&
-        posts.map((post) => <PostDetails key={post._id} post={post} />)}
-    </Stack>
-      
+      <Stack spacing={2} m={2}>
+        {posts &&
+          posts.map((post) => <PostDetails key={post._id} post={post} />)}
+      </Stack>
     </>
   );
 };

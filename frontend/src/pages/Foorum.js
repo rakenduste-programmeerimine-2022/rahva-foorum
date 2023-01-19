@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Stack, Button } from "@mui/material";
@@ -9,16 +9,13 @@ import { Stack, Button } from "@mui/material";
 import PostDetails from "../components/PostDetails";
 //import WorkoutForm from "../components/WorkoutForm";
 
-const Profile = () => {
+const Foorum = () => {
   const { posts, dispatch } = useForumContext();
   const { user } = useAuthContext();
-  const [redirect, setRedirect] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setRedirect(true);
-    console.log("loh");
-    <Link to="/addpost"></Link>;
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+    let path = "/addpost";
+    navigate(path);
   };
   useEffect(() => {
     const fetchPosts = async () => {
@@ -39,7 +36,8 @@ const Profile = () => {
 
   return (
     <>
-      <Button onClick={handleSubmit}
+      <Button
+        onClick={handleSubmit}
         sx={{
           width: 200,
           height: 50,
@@ -58,4 +56,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Foorum;

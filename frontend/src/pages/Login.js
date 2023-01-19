@@ -3,7 +3,7 @@ import { useLogin } from "../hooks/useLogin";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-
+import { Snackbar, Alert } from "@mui/material";
 const Login = () => {
   // React States
 
@@ -26,8 +26,6 @@ const Login = () => {
     return <Navigate to="/" />;
   }
 
-  //const [state, dispatch] = useContext(Context)
-
   // Error message
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
@@ -38,15 +36,7 @@ const Login = () => {
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
-      {/* 
-      https://codesandbox.io/s/5pjgby?file=/demo.tsx:356-493
-      <TextField
-          required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Hello World"
-        />
-      */}
+        {}
         <div className="input-container">
           <label>Kasutajanimi</label>
           <input

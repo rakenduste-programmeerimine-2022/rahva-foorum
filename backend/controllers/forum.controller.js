@@ -1,19 +1,41 @@
 const Post = require("../models/forumPost.model");
-const User = require("../models/user.model");
-const mongoose = require("mongoose");
+const { populate } = require("../models/forumPost.model");
+const asyncHandler = require("express-async-handler");
+//const { id } = require("date-fns/locale");
 
-// get all workouts
-exports.getPosts = async (req, res) => {
+exports.getSinglePost = asyncHandler(async (req, res) => {
+  const { _id, topic, title, text } = await Post.findById(req.params.id);
+  const user_id = req.user._id;
+  res.status(200).json({
+    id: _id,
+    topic,
+    title,
+    text,
+    user_id,
+  });
+});
+
+exports.getUserPosts = async (req, res) => {
   const user_id = req.user._id;
 
-  const posts = await Post.find({}).sort({ createdAt: -1 });
+  const posts = await Post.find({ user_id }).sort({ createdAt: -1 });
 
   res.status(200).json(posts);
 };
 
+// get all posts
+exports.getPosts = async (req, res) => {
+  const posts = await Post.find({ post: req.params.id }).populate(
+    "user",
+    "name"
+  );
+
+  res.status(200).json(posts);
+};
 // create new post
 exports.createPost = async (req, res) => {
-  const { topic, title, text, postedBy } = req.body;
+  const { topic, title, text } = req.body;
+
   //req.body.user = req.user.id;
 
   let emptyFields = [];
@@ -35,15 +57,15 @@ exports.createPost = async (req, res) => {
 
   // add doc to db
   try {
-    const user_id = req.user.id;
-    //const postedBy = req.user;
+    //const postedBy = User?.name;
 
+    const user_id = req.user._id;
     const post = await Post.create({
       topic,
       title,
       text,
       user_id,
-      postedBy,
+      user: req.user.id,
     });
     res.status(200).json(post);
   } catch (error) {

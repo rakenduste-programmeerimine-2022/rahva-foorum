@@ -1,10 +1,32 @@
 import { Container, Stack, Typography, TextField, Button } from "@mui/material";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useForumContext } from "../hooks/useForumContext";
+import { useEffect } from "react";
+import PostDetails from "../components/PostDetails";
 
-export default function Profile() {
-  const { logout } = useLogout();
+const Profile = () => {
+  const { posts, dispatch } = useForumContext();
   const { user } = useAuthContext();
+  const { logout } = useLogout();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("http://localhost:8080/forum/userposts", {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "SET_POSTS", payload: json });
+      }
+    };
+
+    if (user) {
+      fetchPosts();
+    }
+  }, [dispatch, user]);
+
   return (
     <>
       <Container>
@@ -50,15 +72,12 @@ export default function Profile() {
               }}
               id="post"
             >
-              <Typography variant="h1" color="initial" class="heading">
-                Pealkiri
-              </Typography>
-              <Typography variant="h3" color="initial" class="date">
-                Kuupäev-kellaaeg
-              </Typography>
-              <Typography variant="h1" color="initial" class="location">
-                Võrumaa
-              </Typography>
+              <div className="workouts">
+                {posts &&
+                  posts.map((post) => (
+                    <PostDetails key={post._id} post={post} />
+                  ))}
+              </div>
             </Container>
           </Stack>
         </Container>
@@ -80,4 +99,5 @@ export default function Profile() {
       </Container>
     </>
   );
-}
+};
+export default Profile;
