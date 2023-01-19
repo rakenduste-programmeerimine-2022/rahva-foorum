@@ -33,12 +33,19 @@ const PostDetails = ({ post }) => {
         <Typography variant="h3" color="initial" class="user">
           Postitaja: {post.user_id}
         </Typography>
-        <Typography variant="body1" color="initial" class="content">
-          Teema: {post.text}
-        </Typography>
-        <Typography variant="body1" color="initial" class="content">
-          <Button onClick={detailsPage}>Vaata postitust</Button>
-        </Typography>
+        <Stack m={2}>
+        <Button
+          onClick={detailsPage}
+            sx={{
+              width: 200,
+              backgroundColor: "black",
+              "&:hover": { backgroundColor: "green" },
+            }}
+            variant="contained"
+            >
+              Vaata postitust
+        </Button>
+        </Stack>
       </Container>
     </div>
   );

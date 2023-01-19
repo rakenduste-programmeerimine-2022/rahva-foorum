@@ -46,39 +46,10 @@ const Profile = () => {
         </Typography>
         <Container sx={{ border: 1 }} id="posts">
           <Stack spacing={2} m={2}>
-            <Container
-              sx={{
-                border: 1,
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-              id="post"
-            >
-              <Typography variant="h1" color="initial" class="heading">
-                Pealkiri
-              </Typography>
-              <Typography variant="h3" color="initial" class="date">
-                Kuupäev-kellaaeg
-              </Typography>
-              <Typography variant="h1" color="initial" class="location">
-                Võrumaa
-              </Typography>
-            </Container>
-            <Container
-              sx={{
-                border: 1,
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-              id="post"
-            >
-              <div className="workouts">
-                {posts &&
-                  posts.map((post) => (
-                    <PostDetails key={post._id} post={post} />
-                  ))}
-              </div>
-            </Container>
+              {posts &&
+                posts.map((post) => (
+                  <PostDetails key={post._id} post={post} />
+                ))}
           </Stack>
         </Container>
         <Typography variant="h1" color="initial" class="heading">
