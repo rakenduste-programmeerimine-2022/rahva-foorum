@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Stack, TextField, Button } from "@mui/material";
+import { Stack, TextField, Button, Typography } from "@mui/material";
 
 const PostForm = () => {
   const { dispatch } = useForumContext();
@@ -50,88 +50,88 @@ const PostForm = () => {
   return (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
-      { 
-      <>
-      <Stack spacing={2} m={2}>
-        <TextField
-          sx={{
-            width: 300
-          }}
-          required
-          id="topic"
-          label="Kategooria"
-          handleChange={(e) => setTopic(e.target.value)}
-          error={emptyFields.includes("topic") ? "error" : ""}
-        />
-        <TextField
-          sx={{
-            width: 300
-          }}
-          required
-          id="title"
-          label="Pealkiri"
-          handleChange={(e) => setTitle(e.target.value)}
-          error={emptyFields.includes("title") ? "error" : ""}
-        />
-        <TextField
-          sx={{
-            width: 300
-          }}
-          required
-          id="text"
-          label="Tekst"
-          handleChange={(e) => setText(e.target.value)}
-          error={emptyFields.includes("text") ? "error" : ""}
-        />
-        <Button
-          sx={{
-            width: 300,
-            backgroundColor: "black",
-            "&:hover": { backgroundColor: "green" },
-          }}
-          variant="contained"
-          error={error && <div className="error">{error}</div>}
-          >
-            Lisa postitus
-        </Button>
-      </Stack>
-      </>
-      }
-        <h3>Add a Post</h3>
-        <div className="input-container">
-          <label>Topic:</label>
-          <input
-            value={topic}
-            type="text"
+        <Typography variant="h1" color="initial" class="heading">
+          Loo uus positus
+        </Typography>
+        <Stack spacing={2} m={2}>
+          <TextField
+            sx={{
+              width: 300
+            }}
+            required
+            id="topic"
+            label="Kategooria"
             onChange={(e) => setTopic(e.target.value)}
-            className={emptyFields.includes("topic") ? "error" : ""}
-            required
+            error={emptyFields.includes("topic") ? "error" : ""}
           />
-        </div>
-        <div className="input-container">
-          <label>Title:</label>
-          <input
-            value={title}
-            type="text"
+          <TextField
+            fullWidth
+            required
+            id="title"
+            label="Pealkiri"
             onChange={(e) => setTitle(e.target.value)}
-            className={emptyFields.includes("title") ? "error" : ""}
-            required
+            error={emptyFields.includes("title") ? "error" : ""}
           />
-        </div>
-        <div className="input-container">
-          <label>Text:</label>
-          <input
-            value={text}
-            type="text"
+          <TextField
+            fullWidth
+            required
+            id="text"
+            label="Tekst" /* MultiLine with rows: 2 and rowsMax: 4*/
+            multiline
+            minRows={6}
+            maxRows={12}
             onChange={(e) => setText(e.target.value)}
-            className={emptyFields.includes("text") ? "error" : ""}
-            required
+            error={emptyFields.includes("text") ? "error" : ""}
           />
-        </div>
-        <div>
-          <button>Post add</button>
-          {error && <div className="error">{error}</div>}
-        </div>
+          <Button
+            sx={{
+              width: 300,
+              backgroundColor: "black",
+              "&:hover": { backgroundColor: "green" },
+            }}
+            variant="contained"
+            error={error && <div className="error">{error}</div>}
+            >
+              Lisa postitus
+          </Button>
+        </Stack>
+        {/*
+          <h3>Add a Post</h3>
+          <div className="input-container">
+            <label>Topic:</label>
+            <input
+              value={topic}
+              type="text"
+              onChange={(e) => setTopic(e.target.value)}
+              className={emptyFields.includes("topic") ? "error" : ""}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>Title:</label>
+            <input
+              value={title}
+              type="text"
+              onChange={(e) => setTitle(e.target.value)}
+              className={emptyFields.includes("title") ? "error" : ""}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>Text:</label>
+            <input
+              value={text}
+              type="text"
+              onChange={(e) => setText(e.target.value)}
+              className={emptyFields.includes("text") ? "error" : ""}
+              required
+            />
+          </div>
+          <div>
+            <button>Post add</button>
+            {error && <div className="error">{error}</div>}
+          </div>
+        */}
       </form>
     </div>
   );
