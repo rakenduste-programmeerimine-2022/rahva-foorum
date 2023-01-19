@@ -28,8 +28,6 @@ const Login = () => {
     return <Navigate to="/" />;
   }
 
-  //const [state, dispatch] = useContext(Context)
-
   // Error message
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (

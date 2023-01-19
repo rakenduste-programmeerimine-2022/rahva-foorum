@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema.Types;
 //creating user schema for database
 const userSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, ref: "name" },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     status: { type: String, enum: ["pending", "active"], default: "pending" },

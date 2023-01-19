@@ -6,13 +6,18 @@ import { Stack, TextField, Button, Typography } from "@mui/material";
 const PostForm = () => {
   const { dispatch } = useForumContext();
   const { user } = useAuthContext();
-
+  const navigate = useNavigate();
   const [topic, setTopic] = useState("");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
 
+  const Submit = async (e) => {
+    e.preventDefault();
+    let path = "/foorum";
+    navigate(path);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,6 +50,9 @@ const PostForm = () => {
       setEmptyFields([]);
       dispatch({ type: "CREATE_POST", payload: json });
     }
+    window.location.reload();
+
+    <Link to="/foorum"></Link>;
   };
 
   return (
