@@ -40,7 +40,7 @@ const Profile = () => {
           Email: {user.email}
         </Typography>
       </Container>
-      <Container sx={{ border: 1 }}>
+      <Container  sx={{ border: 1 }}>
         <Typography variant="h1" color="initial" class="heading">
           Minu postitused
         </Typography>
@@ -52,21 +52,6 @@ const Profile = () => {
                 ))}
           </Stack>
         </Container>
-        <Typography variant="h1" color="initial" class="heading">
-          Minu andmed
-        </Typography>
-        <Stack m={2}>
-          <Button
-            sx={{
-              width: 200,
-              backgroundColor: "black",
-              "&:hover": { backgroundColor: "green" },
-            }}
-            variant="contained"
-          >
-            Muuda andmeid
-          </Button>
-        </Stack>
       </Container>
     </>
   );

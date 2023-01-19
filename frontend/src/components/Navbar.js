@@ -43,14 +43,14 @@ const Navbar = () => {
               <CustomLink to="/mail">Postkast</CustomLink>
               <CustomLink to="/profile">Minu profiil</CustomLink>
               <CustomLink onClick={logout} to="/">
-                Logout
+                Logi välja
               </CustomLink>
             </>
           )}
           {!user && (
             <>
-              <CustomLink to="/login">Login</CustomLink>
-              <CustomLink to="/register">Register</CustomLink>
+              <CustomLink to="/login">Logi sisse</CustomLink>
+              <CustomLink to="/register">Registreeru</CustomLink>
             </>
           )}
         </nav>
