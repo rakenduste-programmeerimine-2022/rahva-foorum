@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSignup } from "../hooks/useSignup";
 import { Snackbar, Alert, FormHelperText, Typography } from "@mui/material";
 import { useLogout } from "../hooks/useLogout";
+import { Stack, TextField, Button } from "@mui/material";
 
 export default function Register() {
   // React States
@@ -38,56 +39,62 @@ export default function Register() {
   const renderForm = (
     <div className="login-form">
       <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Kasutajanimi</label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Name"
-            name="uname"
+        <Typography variant="h1" color="initial" class="heading">
+          Registreeru kasutajaks
+        </Typography>
+        <Stack spacing={2} m={2}>
+          <TextField
+            sx={{
+              width: 300
+            }}
             required
+            id="username"
+            label="Kasutajanimi"
+            onChange={(e) => setName(e.target.value)}
           />
           {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Email</label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Email"
-            name="email"
+          <TextField
+            sx={{
+              width: 300
+            }}
             required
+            id="email"
+            label="Email"
+            onChange={(e) => setEmail(e.target.value)}
           />
           {renderErrorMessage("email")}
-        </div>
-        <div className="input-container">
-          <label>Parool</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
-            name="pass"
+          <TextField
+            sx={{
+              width: 300
+            }}
             required
+            id="password"
+            label="Parool"
+            type="password"
+            autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
             error={passwordError.length < 5}
           />
           {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <button type="submit">Registreeru</button>
-        </div>
+          <Button
+            type="submit"
+            sx={{
+              width: 300,
+              backgroundColor: "black",
+              "&:hover": { backgroundColor: "green" },
+            }}
+            variant="contained"
+            >
+              Registreeru
+          </Button>
+        </Stack>
       </form>
     </div>
   );
 
   return (
     <div className="app">
-      <div className="login-form">
-        <div className="title">Registreerumine</div>
-        {isSubmitted ? <div>Oled juba kasutaja</div> : renderForm}
-      </div>
+      {isSubmitted ? <div>Oled juba kasutaja</div> : renderForm}
     </div>
   );
 }
