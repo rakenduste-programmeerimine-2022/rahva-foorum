@@ -1,4 +1,4 @@
-import { Container, Stack, Typography, TextField, Button } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useForumContext } from "../hooks/useForumContext";
@@ -28,32 +28,36 @@ const Post = (post) => {
     fetchPostById();
   }, [dispatch, id]);
   return (
-    //posts created at tuleb lisada!!
-    //{moment(posts.createdAt).format("MMMM Do YYYY")}
-    <>
-      <Container sx={{ border: 3 }} id="post">
-        <Typography variant="h3" color="initial" class="date">
-          {moment(post.createdAt).format("MMMM Do YYYY")}
+    <div>
+    <Container sx={{ border: 3 }} id="post">
+      <Typography variant="h3" color="initial" class="date">
+        {moment(post.createdAt).format("MMMM Do YYYY")}
+      </Typography>
+      <div class="heading-container">
+        <Typography variant="h1" color="initial" class="heading">
+          Pealkiri:{posts.topic}
+        </Typography> 
+        <Typography variant="h1" color="initial" class="location">
+          {posts.title}
         </Typography>
-        <div class="heading-container">
-          <Typography variant="h1" color="initial" class="heading">
-            Pealkiri:{posts.topic}
-          </Typography>
-          <Typography variant="h1" color="initial" class="location">
-            {posts.title}
-          </Typography>
-        </div>
-        <Typography variant="h3" color="initial" class="user">
-          Kasutaja: {posts.user_id}
-        </Typography>
-        <Typography variant="body1" color="initial" class="content">
-          {posts.text}
-        </Typography>
-      </Container>
+      </div>
+      <Typography variant="h2" color="initial" class="user">
+        Kasutaja: {posts.user_id}
+      </Typography>
+      <Typography variant="body1" color="initial" class="content">
+        {posts.text}
+      </Typography>
+    </Container>
 
-      <Comments />
-      <ShowComments />
-    </>
+    <Container sx={{ border: 1 }} id="post">
+      <Stack>
+          <ShowComments />
+        <Container>
+          <Comments />
+        </Container>
+      </Stack>
+    </Container>
+    </div>
   );
 };
 export default Post;

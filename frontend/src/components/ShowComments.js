@@ -1,4 +1,4 @@
-import { List } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCommentsContext } from "../hooks/useCommentContext";
@@ -28,14 +28,20 @@ const ShowComments = () => {
   }, [dispatch, id]);
 
   return (
-    <List className="contentList">
-      {comments &&
-        [...comments]
-          .reverse()
-          .map((comment) => (
-            <CommentDetails key={comment._id} comment={comment} />
-          ))}
-    </List>
+    <div>
+      
+        {comments &&
+          [...comments]
+            .reverse()
+            .map((comment) => (
+              <Stack spacing={2} m={2}>
+                <Container sx={{ border: 2 }}>
+                  <CommentDetails key={comment._id} comment={comment} />
+                </Container>
+              </Stack>
+            ))}
+      
+    </div>
   );
 };
 
