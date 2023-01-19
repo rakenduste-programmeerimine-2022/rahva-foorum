@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { Stack, TextField, Button, Typography } from "@mui/material";
+import { useNavigate, Link } from "react-router-dom";
 
 const PostForm = () => {
   const { dispatch } = useForumContext();
@@ -103,43 +104,6 @@ const PostForm = () => {
               Lisa postitus
           </Button>
         </Stack>
-        {/*
-          <h3>Add a Post</h3>
-          <div className="input-container">
-            <label>Topic:</label>
-            <input
-              value={topic}
-              type="text"
-              onChange={(e) => setTopic(e.target.value)}
-              className={emptyFields.includes("topic") ? "error" : ""}
-              required
-            />
-          </div>
-          <div className="input-container">
-            <label>Title:</label>
-            <input
-              value={title}
-              type="text"
-              onChange={(e) => setTitle(e.target.value)}
-              className={emptyFields.includes("title") ? "error" : ""}
-              required
-            />
-          </div>
-          <div className="input-container">
-            <label>Text:</label>
-            <input
-              value={text}
-              type="text"
-              onChange={(e) => setText(e.target.value)}
-              className={emptyFields.includes("text") ? "error" : ""}
-              required
-            />
-          </div>
-          <div>
-            <button>Post add</button>
-            {error && <div className="error">{error}</div>}
-          </div>
-        */}
       </form>
     </div>
   );

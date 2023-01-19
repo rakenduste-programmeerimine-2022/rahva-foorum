@@ -1,22 +1,20 @@
-import { ListItem, ListItemText } from "@mui/material";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Container, Stack, Typography, TextField, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const CommentDetails = ({ comment }) => {
   const { user } = useAuthContext();
 
   return (
     <div>
-      <Container sx={{ border: 3 }} id="post">
-        <div class="heading-container">
-          <Typography variant="h1" color="initial" class="heading">
+          <Typography variant="h3" color="initial" class="date">
+            Kuupäev-kellaaeg
+          </Typography>
+          <Typography variant="h2" color="initial" class="heading">
             Kasutaja: {comment.user.name || user.name}
           </Typography>
-          <Typography variant="h1" color="initial" class="location">
+          <Typography variant="h2" color="initial" class="location">
             Kommentaar: {comment.comment}
           </Typography>
-        </div>
-      </Container>
     </div>
   );
 };
