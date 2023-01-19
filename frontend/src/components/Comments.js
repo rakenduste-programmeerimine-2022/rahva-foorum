@@ -11,6 +11,8 @@ import {
   Input,
   InputLabel,
   Typography,
+  Container,
+  TextField,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 //import CommentList from "./PostList";
@@ -26,8 +28,7 @@ const Comments = ({ post }) => {
 
   const navigate = useNavigate();
   const detailsPage = () => {
-    let path = "/newpost/:id";
-    //window.location.reload();
+    let path = "/newpost/" + post._id;
     navigate(path);
   };
   const handleSubmit = async (e) => {
@@ -65,32 +66,32 @@ const Comments = ({ post }) => {
   };
   //<CommentList></CommentList>
   return (
-    <>
-      <form onSubmit={detailsPage}>
-        <FormGroup>
-          <FormControl required>
-            <Input
-              type="text"
-              onChange={(e) => setCommentBody(e.target.value)}
-              value={commentBody}
-            />
-          </FormControl>
-          <Button
-            type="submit"
-            sx={{
-              width: 200,
-              height: 50,
-              backgroundColor: "black",
-              "&:hover": { backgroundColor: "green" },
-            }}
-            variant="contained"
-          >
-            Lisa kommentaar
-          </Button>
-        </FormGroup>
-        {error && <Box>{error}</Box>}
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <Container>
+        <TextField
+          placeholder="Sisesta kommentaar" /* MultiLine with rows: 2 and rowsMax: 4*/
+          type="text"
+          onChange={(e) => setCommentBody(e.target.value)}
+          value={commentBody}
+          multiline
+          rows={2}
+          maxRows={4}
+          fullWidth
+        />
+        <Button
+          type="submit"
+          sx={{
+            float: "right",
+            backgroundColor: "black",
+            "&:hover": { backgroundColor: "green" },
+          }}
+          variant="contained"
+        >
+          Lisa kommentaar
+        </Button>
+      </Container>
+      {error && <Box>{error}</Box>}
+    </form>
   );
 };
 

@@ -3,6 +3,8 @@ import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Stack, TextField, Button, Typography } from "@mui/material";
+
 const PostForm = () => {
   const { dispatch } = useForumContext();
   const { user } = useAuthContext();
@@ -51,48 +53,60 @@ const PostForm = () => {
       dispatch({ type: "CREATE_POST", payload: json });
     }
     window.location.reload();
-
-    <Link to="/foorum"></Link>;
   };
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <h3>Add a Post</h3>
-        <div className="input-container">
-          <label>Topic:</label>
-          <input
+      <form>
+        <Typography variant="h1" color="initial" class="heading">
+          Loo uus postitus
+        </Typography>
+        <Stack spacing={2} m={2}>
+          <TextField
+            sx={{
+              width: 300,
+            }}
+            required
             value={topic}
-            type="text"
+            id="topic"
+            label="Pealkiri"
             onChange={(e) => setTopic(e.target.value)}
-            className={emptyFields.includes("topic") ? "error" : ""}
-            required
+            error={emptyFields.includes("topic") ? "error" : ""}
           />
-        </div>
-        <div className="input-container">
-          <label>Title:</label>
-          <input
+          <TextField
+            fullWidth
+            required
             value={title}
-            type="text"
+            id="title"
+            label="Maakond"
             onChange={(e) => setTitle(e.target.value)}
-            className={emptyFields.includes("title") ? "error" : ""}
-            required
+            error={emptyFields.includes("title") ? "error" : ""}
           />
-        </div>
-        <div className="input-container">
-          <label>Text:</label>
-          <input
+          <TextField
+            fullWidth
+            required
             value={text}
-            type="text"
+            id="text"
+            label="Tekst" /* MultiLine with rows: 2 and rowsMax: 4*/
+            multiline
+            minRows={6}
+            maxRows={12}
             onChange={(e) => setText(e.target.value)}
-            className={emptyFields.includes("text") ? "error" : ""}
-            required
+            error={emptyFields.includes("text") ? "error" : ""}
           />
-        </div>
-        <div>
-          <button>Post add</button>
-          {error && <div className="error">{error}</div>}
-        </div>
+          <Button
+            sx={{
+              width: 300,
+              backgroundColor: "black",
+              "&:hover": { backgroundColor: "green" },
+            }}
+            variant="contained"
+            onClick={handleSubmit}
+            error={error && <div className="error">{error}</div>}
+          >
+            Lisa postitus
+          </Button>
+        </Stack>
       </form>
     </div>
   );

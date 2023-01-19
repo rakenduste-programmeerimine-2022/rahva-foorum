@@ -6,7 +6,7 @@ import { PropTypes } from "prop-types";
 const PostDetails = ({ post }) => {
   let postTopic = post.topic;
   let postTitle = post.title;
-  let postText = post.text;
+  //let postText = post.text;
   const navigate = useNavigate();
   const detailsPage = () => {
     let path = "/newpost/" + post._id;
@@ -17,7 +17,7 @@ const PostDetails = ({ post }) => {
     <div>
       <Container sx={{ border: 3 }} id="post">
         <Typography variant="h3" color="initial" class="date">
-          {moment(post.createdAt).format("MMMM Do YYYY")}
+          {moment(post.createdAt).format("MMMM Do YYYY HH:mm")}
         </Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
@@ -30,9 +30,7 @@ const PostDetails = ({ post }) => {
         <Typography variant="h3" color="initial" class="user">
           Postitaja: {post.user_id}
         </Typography>
-        <Typography variant="body1" color="initial" class="content">
-          Teema: {postText}
-        </Typography>
+
         <Typography variant="body1" color="initial" class="content">
           <Button onClick={detailsPage}>Vaata postitust</Button>
         </Typography>
@@ -43,6 +41,5 @@ const PostDetails = ({ post }) => {
 PostDetails.propTypes = {
   postTopic: PropTypes.string,
   postTitle: PropTypes.string,
-  postText: PropTypes.string,
 };
 export default PostDetails;

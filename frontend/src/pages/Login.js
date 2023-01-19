@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
-import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import { Snackbar, Alert } from "@mui/material";
+import { Stack, TextField, Button, Typography } from "@mui/material";
 const Login = () => {
   // React States
 
@@ -10,9 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
-  const [passwordError] = useState("");
   const [errorMessages] = useState({});
-  const [isSubmitted] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -33,50 +30,59 @@ const Login = () => {
 
   // Login form
   return (
-    <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        {}
-        <div className="input-container">
-          <label>Kasutajanimi</label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Name"
-            name="uname"
-            required
-          />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="input-container">
-          <label>Email</label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Email"
-            name="email"
-            required
-          />
-          {renderErrorMessage("email")}
-        </div>
-        <div className="input-container">
-          <label>Parool</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
-            name="pass"
-            required
-            error={passwordError.length < 5}
-          />
-          {renderErrorMessage("pass")}
-        </div>
-        <div className="button-container">
-          <button type="submit">Logi sisse</button>
-        </div>
-      </form>
+    <div className="app">
+      <div className="login-form">
+        <form onSubmit={handleSubmit}>
+          <Typography variant="h1" color="initial" class="heading">
+            Logi sisse
+          </Typography>
+          <Stack spacing={2} m={2}>
+            <TextField
+              sx={{
+                width: 300,
+              }}
+              required
+              id="username"
+              label="Kasutajanimi"
+              onChange={(e) => setName(e.target.value)}
+              /*error={renderErrorMessage("uname")}*/
+            />
+            <TextField
+              sx={{
+                width: 300,
+              }}
+              required
+              id="email"
+              label="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              /*error={renderErrorMessage("email")}*/
+            />
+            <TextField
+              sx={{
+                width: 300,
+              }}
+              required
+              id="password"
+              label="Parool"
+              type="password"
+              autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
+              /*error={passwordError.length < 5, renderErrorMessage("pass")}*/
+            />
+            <Button
+              type="submit"
+              sx={{
+                width: 300,
+                backgroundColor: "black",
+                "&:hover": { backgroundColor: "green" },
+              }}
+              variant="contained"
+            >
+              Logi sisse
+            </Button>
+          </Stack>
+        </form>
+      </div>
     </div>
   );
 };

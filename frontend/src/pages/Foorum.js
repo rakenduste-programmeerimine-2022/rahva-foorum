@@ -2,12 +2,9 @@ import { useEffect } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Stack, Button } from "@mui/material";
-// components
 import PostDetails from "../components/PostDetails";
-//import WorkoutForm from "../components/WorkoutForm";
+
 
 const Foorum = () => {
   const { posts, dispatch } = useForumContext();

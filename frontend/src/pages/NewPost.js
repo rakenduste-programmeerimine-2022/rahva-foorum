@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Stack, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useForumContext } from "../hooks/useForumContext";
@@ -15,6 +15,7 @@ const Post = (post) => {
   let postTopic = posts.topic;
   let postTitle = posts.title;
   let postText = posts.text;
+
   useEffect(() => {
     const fetchPostById = async () => {
       const response = await fetch(`http://localhost:8080/forum/posts/${id}`, {
@@ -30,10 +31,10 @@ const Post = (post) => {
   }, [dispatch, id]);
   return (
     //{moment(posts.createdAt).format("MMMM Do YYYY")}
-    <>
+    <div>
       <Container sx={{ border: 3 }} id="post">
         <Typography variant="h3" color="initial" class="date">
-          {moment(post.createdAt).format("MMMM Do YYYY")}
+          {moment(post.createdAt).format("MMMM Do YYYY ")}
         </Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
@@ -43,7 +44,7 @@ const Post = (post) => {
             {postTitle}
           </Typography>
         </div>
-        <Typography variant="h3" color="initial" class="user">
+        <Typography variant="h2" color="initial" class="user">
           Kasutaja: {posts.user_id}
         </Typography>
         <Typography variant="body1" color="initial" class="content">
@@ -51,9 +52,15 @@ const Post = (post) => {
         </Typography>
       </Container>
 
-      <Comments />
-      <ShowComments />
-    </>
+      <Container sx={{ border: 1 }} id="post">
+        <Stack>
+          <ShowComments />
+          <Container>
+            <Comments />
+          </Container>
+        </Stack>
+      </Container>
+    </div>
   );
 };
 Post.propTypes = {

@@ -1,7 +1,6 @@
 const Post = require("../models/forumPost.model");
 const { populate } = require("../models/forumPost.model");
 const asyncHandler = require("express-async-handler");
-//const { id } = require("date-fns/locale");
 
 exports.getSinglePost = asyncHandler(async (req, res) => {
   const { _id, topic, title, text } = await Post.findById(req.params.id);

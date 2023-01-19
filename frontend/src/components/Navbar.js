@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Link,
-  Navigate,
-  useMatch,
-  useResolvedPath,
-} from "react-router-dom";
+import { Link, Navigate, useMatch, useResolvedPath } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../styles.css";
 import { useLogout } from "../hooks/useLogout";
@@ -39,8 +33,7 @@ const Navbar = () => {
           {user && (
             <>
               <CustomLink to="/foorum">Foorum</CustomLink>
-              <CustomLink to="/newpost">NewPost</CustomLink>
-              <CustomLink to="/mail">Postkast</CustomLink>
+
               <CustomLink to="/profile">Minu profiil</CustomLink>
               <CustomLink onClick={logout} to="/">
                 Logout
