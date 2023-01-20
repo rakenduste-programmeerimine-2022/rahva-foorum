@@ -29,18 +29,16 @@ const ShowComments = () => {
 
   return (
     <div>
-      
-        {comments &&
-          [...comments]
-            .reverse()
-            .map((comment) => (
-              <Stack spacing={2} m={2}>
-                <Container sx={{ border: 2 }}>
-                  <CommentDetails key={comment._id} comment={comment} />
-                </Container>
-              </Stack>
-            ))}
-      
+
+      {comments &&
+        [...comments].reverse().map((comment) => (
+          <Stack spacing={2} m={2}>
+            <Container sx={{ border: 2 }}>
+              <CommentDetails key={comment._id} comment={comment} />
+            </Container>
+          </Stack>
+        ))}
+
     </div>
   );
 };

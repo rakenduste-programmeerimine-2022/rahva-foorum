@@ -1,15 +1,14 @@
-import { useForumContext } from "../hooks/useForumContext";
+import { Container, Typography, Button, Stack } from "@mui/material";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Container, Stack, Typography, TextField, Button } from "@mui/material";
-// date fns
 import moment from "moment";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { PropTypes } from "prop-types";
 
 const PostDetails = ({ post }) => {
   const { user } = useAuthContext();
-  //console.log(post);
+  let postTopic = post.topic;
+  let postTitle = post.title;
+  //let postText = post.text;
   const navigate = useNavigate();
   const detailsPage = () => {
     let path = "/newpost/" + post._id;
@@ -20,35 +19,43 @@ const PostDetails = ({ post }) => {
     <div>
       <Container sx={{ border: 3 }} id="post">
         <Typography variant="h3" color="initial" class="date">
-          {moment(post.createdAt).format("MMMM Do YYYY")}
+          {moment(post.createdAt).format("MMMM Do YYYY HH:mm")}
         </Typography>
         <div class="heading-container">
           <Typography variant="h1" color="initial" class="heading">
-            Pealkiri: {post.topic}
+            Teema:{postTopic}
           </Typography>
           <Typography variant="h1" color="initial" class="location">
-            Maakond: {post.title}
+            Maakond: {postTitle}
           </Typography>
         </div>
         <Typography variant="h3" color="initial" class="user">
-          Postitaja: {post.user_id}
+
+          Postitaja: {post.user.name || user.name}
         </Typography>
+
         <Stack m={2}>
-        <Button
-          onClick={detailsPage}
+          <Button
+            onClick={detailsPage}
+
             sx={{
               width: 200,
               backgroundColor: "black",
               "&:hover": { backgroundColor: "green" },
             }}
             variant="contained"
-            >
-              Vaata postitust
-        </Button>
+
+          >
+            Vaata postitust
+          </Button>
+
         </Stack>
       </Container>
     </div>
   );
 };
-
+PostDetails.propTypes = {
+  postTopic: PropTypes.string,
+  postTitle: PropTypes.string,
+};
 export default PostDetails;

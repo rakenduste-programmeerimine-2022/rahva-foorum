@@ -45,7 +45,9 @@ export default function Register() {
         <Stack spacing={2} m={2}>
           <TextField
             sx={{
-              width: 300
+
+              width: 300,
+
             }}
             required
             id="username"
@@ -55,7 +57,9 @@ export default function Register() {
           {renderErrorMessage("uname")}
           <TextField
             sx={{
-              width: 300
+
+              width: 300,
+
             }}
             required
             id="email"
@@ -65,7 +69,9 @@ export default function Register() {
           {renderErrorMessage("email")}
           <TextField
             sx={{
-              width: 300
+
+              width: 300,
+
             }}
             required
             id="password"
@@ -83,8 +89,10 @@ export default function Register() {
               "&:hover": { backgroundColor: "green" },
             }}
             variant="contained"
-            >
-              Registreeru
+
+          >
+            Registreeru
+
           </Button>
         </Stack>
       </form>

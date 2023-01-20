@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { Stack, TextField, Button, Typography } from "@mui/material";
+
 
 const Login = () => {
   // React States
@@ -12,9 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
-  const [passwordError] = useState("");
   const [errorMessages] = useState({});
-  const [isSubmitted] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -45,7 +42,7 @@ const Login = () => {
           <Stack spacing={2} m={2}>
             <TextField
               sx={{
-                width: 300
+                width: 300,
               }}
               required
               id="username"
@@ -55,7 +52,7 @@ const Login = () => {
             />
             <TextField
               sx={{
-                width: 300
+                width: 300,
               }}
               required
               id="email"
@@ -65,7 +62,8 @@ const Login = () => {
             />
             <TextField
               sx={{
-                width: 300
+
+                width: 300,
               }}
               required
               id="password"
@@ -77,15 +75,17 @@ const Login = () => {
             />
             <Button
               type="submit"
-              
+
               sx={{
                 width: 300,
                 backgroundColor: "black",
                 "&:hover": { backgroundColor: "green" },
               }}
               variant="contained"
-              >
-                Logi sisse
+
+            >
+              Logi sisse
+
             </Button>
           </Stack>
         </form>
