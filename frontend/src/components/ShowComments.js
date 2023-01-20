@@ -29,6 +29,7 @@ const ShowComments = () => {
 
   return (
     <div>
+
       {comments &&
         [...comments].reverse().map((comment) => (
           <Stack spacing={2} m={2}>
@@ -37,6 +38,7 @@ const ShowComments = () => {
             </Container>
           </Stack>
         ))}
+
     </div>
   );
 };

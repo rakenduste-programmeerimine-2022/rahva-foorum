@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
 import { Navigate } from "react-router-dom";
 import { Stack, TextField, Button, Typography } from "@mui/material";
+
+
 const Login = () => {
   // React States
 
@@ -13,6 +15,7 @@ const Login = () => {
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (e) => {
+    console.log("login")
     e.preventDefault();
     setRedirect(true);
 
@@ -59,6 +62,7 @@ const Login = () => {
             />
             <TextField
               sx={{
+
                 width: 300,
               }}
               required
@@ -71,14 +75,17 @@ const Login = () => {
             />
             <Button
               type="submit"
+
               sx={{
                 width: 300,
                 backgroundColor: "black",
                 "&:hover": { backgroundColor: "green" },
               }}
               variant="contained"
+
             >
               Logi sisse
+
             </Button>
           </Stack>
         </form>

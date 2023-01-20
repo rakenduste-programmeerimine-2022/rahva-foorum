@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useForumContext } from "../hooks/useForumContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Stack, TextField, Button, Typography } from "@mui/material";
+
 
 const PostForm = () => {
   const { dispatch } = useForumContext();
@@ -60,6 +62,7 @@ const PostForm = () => {
       <form>
         <Typography variant="h1" color="initial" class="heading">
           Loo uus postitus
+
         </Typography>
         <Stack spacing={2} m={2}>
           <TextField
@@ -70,15 +73,24 @@ const PostForm = () => {
             value={topic}
             id="topic"
             label="Pealkiri"
+
+              width: 300
+            }}
+            required
+            id="topic"
+            label="Kategooria"
+
             onChange={(e) => setTopic(e.target.value)}
             error={emptyFields.includes("topic") ? "error" : ""}
           />
           <TextField
             fullWidth
             required
+
             value={title}
             id="title"
             label="Maakond"
+
             onChange={(e) => setTitle(e.target.value)}
             error={emptyFields.includes("title") ? "error" : ""}
           />
@@ -101,10 +113,12 @@ const PostForm = () => {
               "&:hover": { backgroundColor: "green" },
             }}
             variant="contained"
+
             onClick={handleSubmit}
             error={error && <div className="error">{error}</div>}
           >
             Lisa postitus
+
           </Button>
         </Stack>
       </form>

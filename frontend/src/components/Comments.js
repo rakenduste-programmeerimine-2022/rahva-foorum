@@ -13,6 +13,7 @@ import {
   Typography,
   Container,
   TextField,
+
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -76,6 +77,7 @@ const Comments = ({ post }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Container>
+
         <TextField
           placeholder="Sisesta kommentaar" /* MultiLine with rows: 2 and rowsMax: 4*/
           type="text"
@@ -100,6 +102,7 @@ const Comments = ({ post }) => {
       </Container>
       {error && <Box>{error}</Box>}
     </form>
+
   );
 };
 

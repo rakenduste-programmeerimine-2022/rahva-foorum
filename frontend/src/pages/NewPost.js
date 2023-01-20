@@ -31,6 +31,7 @@ const Post = (post) => {
     fetchPostById();
   }, [dispatch, id]);
   return (
+
     //{moment(posts.createdAt).format("MMMM Do YYYY")}
     <div>
       <Container sx={{ border: 3 }} id="post">
@@ -61,6 +62,7 @@ const Post = (post) => {
           </Container>
         </Stack>
       </Container>
+
     </div>
   );
 };
