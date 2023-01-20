@@ -15,6 +15,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+
 //import CommentList from "./PostList";
 
 const Comments = ({ post }) => {
@@ -63,6 +64,13 @@ const Comments = ({ post }) => {
       setError(null);
       dispatch({ type: "CREATE_COMMENT", payload: json });
     }
+    //window.location.reload();
+    if (redirect) {
+      return <Navigate to="/foorum" />;
+    }
+
+    let path = "/foorum";
+    navigate(path);
   };
   //<CommentList></CommentList>
   return (

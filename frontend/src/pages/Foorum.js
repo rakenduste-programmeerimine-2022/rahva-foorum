@@ -5,8 +5,13 @@ import { useNavigate } from "react-router-dom";
 import { Stack, Button } from "@mui/material";
 import PostDetails from "../components/PostDetails";
 
-
 const Foorum = () => {
+  if (!window.location.hash) {
+    window.location = window.location + "#loaded";
+    window.location.reload();
+  }
+
+  //window.location.reload(1);
   const { posts, dispatch } = useForumContext();
   const { user } = useAuthContext();
   const navigate = useNavigate();

@@ -1,9 +1,11 @@
-import { Container, Typography, Button } from "@mui/material";
+import { Container, Typography, Button, Stack } from "@mui/material";
+import { useAuthContext } from "../hooks/useAuthContext";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
 const PostDetails = ({ post }) => {
+  const { user } = useAuthContext();
   let postTopic = post.topic;
   let postTitle = post.title;
   //let postText = post.text;
@@ -28,12 +30,22 @@ const PostDetails = ({ post }) => {
           </Typography>
         </div>
         <Typography variant="h3" color="initial" class="user">
-          Postitaja: {post.user_id}
+          Postitaja: {post.user.name || user.name}
         </Typography>
 
-        <Typography variant="body1" color="initial" class="content">
-          <Button onClick={detailsPage}>Vaata postitust</Button>
-        </Typography>
+        <Stack m={2}>
+          <Button
+            onClick={detailsPage}
+            sx={{
+              width: 200,
+              backgroundColor: "black",
+              "&:hover": { backgroundColor: "green" },
+            }}
+            variant="contained"
+          >
+            Vaata postitust
+          </Button>
+        </Stack>
       </Container>
     </div>
   );

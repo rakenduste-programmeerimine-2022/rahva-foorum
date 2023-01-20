@@ -8,6 +8,7 @@ import Comments from "../components/Comments";
 import ShowComments from "../components/ShowComments";
 import { PropTypes } from "prop-types";
 //const Comment =(comment)
+
 const Post = (post) => {
   const { posts, dispatch } = useForumContext();
   const { id } = useParams();

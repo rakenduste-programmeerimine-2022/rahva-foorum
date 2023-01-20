@@ -6,12 +6,18 @@ Foorum on mõeldud Eestis elavatele inimestele, kes soovivad ennast kursis hoida
 
 ### Projekti funktsionaalsused
 
-Foorumis on alamkategooriateks erinevad maakonnad.
-Inimestel on võimalus soovi korral luua kasutaja ja sisse logida.
-Kasutajad saavad luua oma profiili ja alustada mingil teemal arutelu valitud maakonna järgi.
-Samuti saavad kasutajad kirjutada kommentaare teiste postitatud arutelude alla. Lisaks saavad kasutajad omavahel saata sõnumeid privaatsete vestlusena.
-Lisaks on sisselogitud inimestel võimalik postitada maakonnas toimuvaid üritusi.
-Sisselogimata inimesed saavad lehekülge sirvida ja lugeda teiste arutelusid, kuid ei saa neid kommenteerida.
+- Inimesed saavad registreeruda
+- Nad saavad ka sisse logida
+- Kasutajatele tekib profiil, mida nad saavad vaadata
+- Profiililt näed ka enda tehtud postitusi
+- Kasutajad saavad luua uusi postitusi
+- Loodud postitusi on võimalik vaadata
+- Kõik kasutajad saavad kirjutada kommentaare, nii enda, kui ka teiste postituste alla
+
+### Projekti käivitamine
+
+- backendi käivitamiseks pead rahvafoorumist minema cd backend ja panema npm run dev
+- frontendi käivitamiseks pead rahvafoorumist minema cd frontend ja panema npm start
 
 ## Projekti autorid
 

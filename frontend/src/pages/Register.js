@@ -73,7 +73,6 @@ export default function Register() {
             type="password"
             autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
-            error={passwordError.length < 5}
           />
           {renderErrorMessage("pass")}
           <Button

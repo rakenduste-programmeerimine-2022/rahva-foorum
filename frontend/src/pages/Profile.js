@@ -81,21 +81,6 @@ const Profile = () => {
             </Container>
           </Stack>
         </Container>
-        <Typography variant="h1" color="initial" class="heading">
-          Minu andmed
-        </Typography>
-        <Stack m={2}>
-          <Button
-            sx={{
-              width: 200,
-              backgroundColor: "black",
-              "&:hover": { backgroundColor: "green" },
-            }}
-            variant="contained"
-          >
-            Muuda andmeid
-          </Button>
-        </Stack>
       </Container>
     </>
   );
